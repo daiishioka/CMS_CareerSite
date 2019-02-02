@@ -1,2 +1,6 @@
-<h1>RegisteredCompaniesPages#index</h1>
-<p>Find me in app/views/registered_companies_pages/index.html.erb</p>
+<% if logged_in? %>
+  <h1>RegisteredCompaniesPages#index</h1>
+  <p>Find me in app/views/registered_companies_pages/index.html.erb</p>
+<% else %>
+  <%= render "sessions/login_form" %>
+<% end %>
