@@ -17,3 +17,6 @@
 .row{
   padding-top: 50px;
 }
+.container{
+  padding: auto;
+}
