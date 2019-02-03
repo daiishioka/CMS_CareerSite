@@ -8,7 +8,15 @@
   
   <div class="form-group">
     <%= f.label :established_yearmonth, "設立年" %>
-    <%= f.date_select :established_yearmonth, {discard_month: true}, {discard_day: true} %> 年 <%= f.date_select :established_yearmonth, {discard_year: true}, {discard_day: true} %> 月
+  <%= raw sprintf(
+            f.date_select(
+              :established_yearmonth,
+              use_month_numbers: true,
+              start_year: 1930,
+              discard_day: true,
+              date_separator: '%s'),
+            '年 ') + '月'
+   %>
   </div>
   
   <div class="form-group">
