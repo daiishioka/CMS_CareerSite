@@ -1,0 +1,15 @@
+<% if logged_in? %>
+<h1>企業一覧</h1>
+
+<ul>
+  <% @companies.each do |company| %>
+    <li><%= company.name %> <%= company.telephone %></li>
+    <%= link_to "詳細", company_path(company), class: "btn btn-info" %>
+    <%= link_to "削除", company, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいでしょうか？' } %>
+  <% end %>
+</ul>
+
+<% else %>
+  <%= render "sessions/login_form" %>
+<% end %>
+  
