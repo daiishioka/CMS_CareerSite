@@ -9,3 +9,4 @@
 (1..5).each do |number|
   Company.create(name: '株式会社あああ' + number.to_s, ceo: '田中太郎' + number.to_s, telephone: "03-1234-5678")
 end
+

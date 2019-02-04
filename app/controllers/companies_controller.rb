@@ -5,12 +5,9 @@ class CompaniesController < ApplicationController
   
   def show
     @company = Company.find(params[:id])
-  end
-  
-  def new
-  end
-  
-  def create
+    
+    @recruit = @company.recruits.build
+    @recruits = @company.recruits.order('created_at DESC').page(params[:page])
   end
   
   def edit
@@ -18,6 +15,16 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    @company = Company.find(params[:id])
+    
+    if @company.update(company_params)
+      flash[:success] = '企業情報を更新しました'
+      redirect_to @company
+    else
+      flash.now[:danger] = "企業情報の更新に失敗しました"
+      render :edit
+    end
+      
   end
 
   def destroy
@@ -26,6 +33,12 @@ class CompaniesController < ApplicationController
     
     flash[:success] = '企業を削除しました。'
     redirect_to companies_url
+  end
+  
+  private
+
+  def company_params
+    params.require(:company).permit(:name, :ceo, :employees, :capital_stock, :headquarter_address, :homepage, :telephone, :established_yearmonth, :image)
   end
   
 end

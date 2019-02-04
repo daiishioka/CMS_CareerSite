@@ -1,0 +1,17 @@
+<h1><%= link_to "< 求人詳細ページ", company_path, class: "btn btn-info" %></h1>
+<div>
+  <%= link_to "編集", edit_recruit_path(@recruit), class: 'btn btn-info' %>
+  <%= link_to "削除", @recruit, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
+</div>
+
+<h3>募集背景</h3>
+<p><%= @recruit.recruitment_background %></p><br>
+
+<h3>仕事内容</h3>
+<p><%= @recruit.job_description %></p><br>
+
+<h3>募集要項</h3>
+<p><%= @recruit.requirement %></p><br>
+
+<h3>選考方法</h3>
+<p><%= @recruit.selection_process %></p>
