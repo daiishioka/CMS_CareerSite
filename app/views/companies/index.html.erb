@@ -3,9 +3,18 @@
 
 <ul>
   <% @companies.each do |company| %>
-    <li><%= company.name %> <%= company.telephone %></li>
-    <%= link_to "詳細", company_path(company), class: "btn btn-info" %>
-    <%= link_to "削除", company, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいでしょうか？' } %>
+    
+    <li>
+      <% if company.image.attached? %>
+        <%= image_tag company.image %>
+      <% else %>
+        <%= image_tag "/company.png", class: 'rounded-circle' %>
+      <% end %>
+      <p><%= company.name %></p>
+      <p><%= company.telephone %></p>
+      <p><%= link_to "詳細", company_path(company), class: "btn btn-info" %></p>
+      <p><%= link_to "削除", company, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいでしょうか？' } %></p>
+    </li>
   <% end %>
 </ul>
 

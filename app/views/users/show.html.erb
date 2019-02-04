@@ -1,0 +1,19 @@
+<h1><%= link_to "< 転職希望者詳細", users_path, class: "btn btn-info" %></h1>
+<div>
+  <%= link_to "編集", edit_user_path(@user), class: 'btn btn-info' %>
+  <%= link_to "削除", @user, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
+</div>
+
+<p>名前: <%= @user.name %></p>
+<p>性別: <%= @user.sex %></p>
+<p>生年月日:
+  <% if @user.birthday.present? %>
+    <%= @user.birthday.strftime('%Y年%m月') %>
+  <% end %>
+</p>
+<p>現住所: <%= @user.address %></p>
+<p>電話番号: <%= @user.telephone %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<p>最終学歴: <%= @user.academic_background %></p>
+<p>履歴書: <%= @user.resume_file %></p>
+<p>職務経歴書: <%= @user.career_file %></p>

@@ -1,0 +1,19 @@
+<% if logged_in? %>
+<h1>企業一覧</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    
+    <li>
+      <%= user.name %>
+      <%= user.email %>
+      <%= link_to "詳細", user_path(user), class: "btn btn-info" %>
+      <%= link_to "削除", user, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいでしょうか？' } %>
+    </li>
+  <% end %>
+</ul>
+
+<% else %>
+  <%= render "sessions/login_form" %>
+<% end %>
+  
