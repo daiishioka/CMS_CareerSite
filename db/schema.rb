@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_055201) do
+ActiveRecord::Schema.define(version: 2019_02_04_124742) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -57,14 +57,14 @@ ActiveRecord::Schema.define(version: 2019_02_04_055201) do
 
   create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.integer "sex"
+    t.string "sex"
     t.string "telephone"
     t.string "email"
     t.string "belonged_company"
-    t.bigint "company_id"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
     t.index ["company_id"], name: "index_members_on_company_id"
   end
 
@@ -100,5 +100,6 @@ ActiveRecord::Schema.define(version: 2019_02_04_055201) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "members", "companies"
   add_foreign_key "recruits", "companies"
 end

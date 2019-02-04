@@ -1,0 +1,15 @@
+<ul class="media-list">
+  <% members.each do |member| %>
+    <li class="media">
+      <div class="media-body">
+        <div>
+          <p><%= member.name %></p>
+        </div>
+        <div>
+          <%= link_to "詳細", member_path, class: 'btn btn-info' %>
+          <%= link_to "削除", member, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

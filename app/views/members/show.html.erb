@@ -1,0 +1,11 @@
+<h1><%= link_to "< 担当者詳細ページ", company_path, class: "btn btn-info" %></h1>
+<div>
+  <%= link_to "編集", edit_member_path(@member), class: 'btn btn-info' %>
+  <%= link_to "削除", @member, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
+</div>
+
+<p>名前：<%= @member.name %></p><br>
+<p>性別：<%= @member.sex %></p><br>
+<p>電話番号：<%= @member.telephone %></p><br>
+<p>メールアドレス：<%= @member.email %></p><br>
+<p>所属企業：<%= @member.belonged_company %></p><br>

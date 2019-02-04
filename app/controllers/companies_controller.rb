@@ -8,6 +8,9 @@ class CompaniesController < ApplicationController
     
     @recruit = @company.recruits.build
     @recruits = @company.recruits.order('created_at DESC').page(params[:page])
+    
+    @member = @company.members.build
+    @members = @company.members.order('created_at DESC').page(params[:page])
   end
   
   def edit
