@@ -1,2 +1,64 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>転職希望者情報編集</h1>
+
+<%= form_for(@user) do |f| %>
+  <div class="form-group">
+    <%= f.label :image, "アイコン" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :sex, "性別" %><br>
+    <label><%= f.radio_button :sex, "男性" %>男性</label>
+    <label><%= f.radio_button :sex, "女性" %>女性</label>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :birthday, "設立年" %>
+  <%= raw sprintf(
+            f.date_select(
+              :birthday,
+              use_month_numbers: true,
+              start_year: 1930,
+              discard_day: true,
+              date_separator: '%s'),
+            '年 ') + '月'
+   %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :telephone, "電話番号" %>
+    <%= f.text_field :telephone, class: "form-control" %> 
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :academic_background, "最終学歴" %>
+    <%= f.text_field :academic_background, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :resume_file, "履歴書" %>
+    <%= f.text_field :resume_file, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :career_file, "職務経歴書" %>
+    <%= f.text_area :career_file, class: "form-control" %>
+  </div>
+  
+  <%= f.submit '投稿', class: "btn btn-primary" %>
+<% end %>

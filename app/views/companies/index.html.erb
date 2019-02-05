@@ -3,7 +3,6 @@
 
 <ul>
   <% @companies.each do |company| %>
-    
     <li>
       <% if company.image.attached? %>
         <%= image_tag company.image %>

@@ -5,6 +5,11 @@
   <% @users.each do |user| %>
     
     <li>
+      <% if user.image.present? %>
+        <%= image_tag @user.image %>
+      <% else %>
+        <%= image_tag "/person.png", class: "rounded-circle" %>
+      <% end %>
       <%= user.name %>
       <%= user.email %>
       <%= link_to "詳細", user_path(user), class: "btn btn-info" %>
