@@ -3,7 +3,7 @@
   <%= link_to "編集", edit_user_path(@user), class: 'btn btn-info' %>
   <%= link_to "削除", @user, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
 </div>
-  <% if @user.image.present? %>
+  <% if @user.image.attached? %>
     <%= image_tag @user.image %>
   <% else %>
     <%= image_tag "/person.png", class: 'rounded-circle' %>

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user.destroy
     
     flash[:success] = "転職希望者を削除しました"
-    redirect_back(fallback_location: user_path)
+    redirect_back(fallback_location: users_path)
   end
   
   private

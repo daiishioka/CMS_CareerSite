@@ -1,11 +1,11 @@
 <% if logged_in? %>
-<h1>企業一覧</h1>
+<h1>転職希望者一覧</h1>
 
 <ul>
   <% @users.each do |user| %>
     
     <li>
-      <% if user.image.present? %>
+      <% if user.image.attached? %>
         <%= image_tag @user.image %>
       <% else %>
         <%= image_tag "/person.png", class: "rounded-circle" %>
