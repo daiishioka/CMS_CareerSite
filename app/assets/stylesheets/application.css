@@ -14,9 +14,18 @@
  *= require_self
  */
 
-.row{
-  padding-top: 50px;
+.card-deck{
+  margin-top: 10px;
 }
-.container{
-  padding: auto;
+.card-deck .card .card-body .telephone {
+  text-align: center;
+}
+.page-item{
+  margin-top: 10px;
+}
+h1 {
+border-bottom: solid 1px #a9a9a9;
+}
+#login-form{
+  margin-top: 100px;
 }

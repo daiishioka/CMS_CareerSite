@@ -4,7 +4,7 @@
   <%= link_to "削除", @user, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
 </div>
   <% if @user.image.attached? %>
-    <%= image_tag @user.image %>
+    <%= image_tag @user.image.variant(resize: "100x100") %>
   <% else %>
     <%= image_tag "/person.png", class: 'rounded-circle' %>
   <% end %>
