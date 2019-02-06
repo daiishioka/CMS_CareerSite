@@ -8,7 +8,7 @@
           <div class="container">
             <div class="row align-items-center">
               <% if company.image.attached? %>
-                <%= image_tag company.image %>
+                <%= image_tag company.image.variant(resize: "100x100") %>
               <% else %>
                 <%= image_tag "/company.png", class: 'rounded-circle' %>
               <% end %>
