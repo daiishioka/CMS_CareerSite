@@ -9,9 +9,9 @@
           <div class="container">
             <div class="row align-items-center">
             <% if user.image.attached? %>
-              <%= image_tag user.image %>
+              <%= image_tag user.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
             <% else %>
-              <%= image_tag "/person.png", class: "rounded-circle" %>
+              <%= image_tag "/person.png", class: "img-thumbnail rounded-circle" %>
             <% end %>
               <div class="col-sm">
                 <%= user.name %>

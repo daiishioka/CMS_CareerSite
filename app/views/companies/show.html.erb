@@ -6,9 +6,9 @@
     <h3>企業情報 <%= link_to "編集", edit_company_path(@company), class: "btn btn-primary" %></h3>
     <p>
       <% if @company.image.attached? %>
-        <%= image_tag @company.image.variant(resize: "100x100") %>
+        <%= image_tag @company.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
       <% else %>
-        <%= image_tag "/company.png", class: 'rounded-circle' %>
+        <%= image_tag "/company.png", class: "img-thumbnail rounded-circle" %>
       <% end %>
     </p>
     <p>

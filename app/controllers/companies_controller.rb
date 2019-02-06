@@ -7,10 +7,10 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     
     @recruit = @company.recruits.build
-    @recruits = @company.recruits.order('created_at DESC').page(params[:page])
+    @recruits = @company.recruits.order('created_at DESC').page(params[:page]).per(2)
     
     @member = @company.members.build
-    @members = @company.members.order('created_at DESC').page(params[:page])
+    @members = @company.members.order('created_at DESC').page(params[:page]).per(2)
   end
   
   def edit

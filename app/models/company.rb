@@ -3,6 +3,5 @@ class Company < ApplicationRecord
   
   has_many :recruits
   has_many :members
-
   
 end

@@ -6,10 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-(1..5).each do |number|
-  Company.create(name: '株式会社あああ' + number.to_s, ceo: '田中太郎' + number.to_s, telephone: "03-1234-5678")
-end
 
-User.create(name: '吉田孝', email: 'a@gmail.com')
-User.create(name: '佐藤健', email: 'b@gmail.com')
-User.create(name: '山田まこ', email: 'c@gmail.com')
+(1..10).each do |number|
+  Member.create(name: '山田' + number.to_s, company_id: number.to_s)
+end
