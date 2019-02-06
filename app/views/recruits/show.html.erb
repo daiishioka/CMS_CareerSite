@@ -1,8 +1,10 @@
-<h1><%= link_to "< 求人詳細ページ", company_path, class: "btn btn-info" %></h1>
-<div>
+<%= link_to "戻る", company_path, class: "btn btn-secondary btn-circle" %>
+<h1>
+  求人詳細ページ
   <%= link_to "編集", edit_recruit_path(@recruit), class: 'btn btn-info' %>
   <%= link_to "削除", @recruit, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
-</div>
+</h1>
+
 
 <h3>募集背景</h3>
 <p><%= @recruit.recruitment_background %></p><br>
@@ -11,7 +13,65 @@
 <p><%= @recruit.job_description %></p><br>
 
 <h3>募集要項</h3>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th style="width:20%"><i class="fas fa-briefcase">募集職種</i></th>
+      <td>項目１</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-file-alt">雇用形態</i></th>
+      <td>項目４</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-check">応募資格</i></th>
+      <td>項目７</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-map-marker-alt">勤務地</i></th>
+      <td>項目１</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-clock">勤務時間</i></th>
+      <td>項目４</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-yen-sign">給与</i></th>
+      <td>項目７</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-heart">待遇・福利厚生</i></th>
+      <td>項目７</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-calendar-alt">休暇</i></th>
+      <td>項目７</td>
+    </tr>
+  </tbody>
+</table>
+
 <p><%= @recruit.requirement %></p><br>
 
 <h3>選考方法</h3>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th style="width:20%"><i class="fas fa-envelope">応募方法</i></th>
+      <td>項目１</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-info-circle">選考プロセス</i></th>
+      <td>項目４</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-map-marker-alt">面接地</i></th>
+      <td>項目７</td>
+    </tr>
+    <tr>
+      <th scope="row"><i class="fas fa-user-alt">担当者</i></th>
+      <td>項目１</td>
+    </tr>
+  </tbody>
+</table>
+
 <p><%= @recruit.selection_process %></p>
