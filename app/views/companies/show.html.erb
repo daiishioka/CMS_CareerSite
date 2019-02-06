@@ -1,50 +1,57 @@
-<h1><%= link_to "< 企業詳細ページ", companies_path, class: "btn btn-info" %></h1>
+<%= link_to "戻る", companies_path, class: "btn btn-secondary btn-circle" %>
 
-<h3>企業情報 <%= link_to "編集", edit_company_path(@company), class: "btn btn-primary" %></h3>
-<p>
-  <% if @company.image.attached? %>
-    <%= image_tag @company.image %>
-  <% else %>
-    <%= image_tag "/company.png", class: 'rounded-circle' %>
-  <% end %>
-</p>
-<p>
-  企業名<br>
-  <%= @company.name %>
-</p>
-<p>
-  設立<br>
-  <% if @company.established_yearmonth.present? %>
-    <%= @company.established_yearmonth.strftime('%Y年%m月') %>
-  <% end %>
-</p>
-<p>
-  代表者<br>
-  <%= @company.ceo %>
-</p>
-<p>
-  従業員数<br>
-  <%= @company.employees %> 名
-</p>
-<p>
-  資本金<br>
-  <%= @company.capital_stock %> 円
-</p>
-<p>
-  本社住所<br>
-  <%= @company.headquarter_address %>
-</p>
-<p>
-  事業内容<br>
-  <%= @company.business_description %>
-</p>
-<p>
-  ホームページ<br>
-  <%= @company.homepage %>
-</p>
-
-<h3>求人内容</h3>
-<%= render 'recruits/recruits', recruits: @recruits %>
-
-<h3>担当者一覧</h3>
-<%= render 'members/members', members: @members %>
+<h1>企業詳細ページ</h1>
+<div class="row" id="company-show">
+  <div class="col-md-3">
+    <h3>企業情報 <%= link_to "編集", edit_company_path(@company), class: "btn btn-primary" %></h3>
+    <p>
+      <% if @company.image.attached? %>
+        <%= image_tag @company.image %>
+      <% else %>
+        <%= image_tag "/company.png", class: 'rounded-circle' %>
+      <% end %>
+    </p>
+    <p>
+      企業名<br>
+      <%= @company.name %>
+    </p>
+    <p>
+      設立<br>
+      <% if @company.established_yearmonth.present? %>
+        <%= @company.established_yearmonth.strftime('%Y年%m月') %>
+      <% end %>
+    </p>
+    <p>
+      代表者<br>
+      <%= @company.ceo %>
+    </p>
+    <p>
+      従業員数<br>
+      <%= @company.employees %> 名
+    </p>
+    <p>
+      資本金<br>
+      <%= @company.capital_stock %> 円
+    </p>
+    <p>
+      本社住所<br>
+      <%= @company.headquarter_address %>
+    </p>
+    <p>
+      事業内容<br>
+      <%= @company.business_description %>
+    </p>
+    <p>
+      ホームページ<br>
+      <%= @company.homepage %>
+    </p>
+  </div>
+  
+  <div class="col-md-9">
+    <h3 class="recruits">求人内容</h3>
+    <%= render 'recruits/recruits', recruits: @recruits %>
+    
+    <h3 class="members">担当者一覧</h3>
+    <%= render 'members/members', members: @members %>
+  </div>
+</div>

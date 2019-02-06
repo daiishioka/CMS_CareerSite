@@ -1,15 +1,22 @@
 <ul class="media-list">
   <% recruits.each do |recruit| %>
-    <li class="media">
-      <div class="media-body">
-        <div>
-          <p><%= recruit.title %></p>
-        </div>
-        <div>
-          <%= link_to "詳細", recruit_path, class: 'btn btn-info' %>
-          <%= link_to "削除", recruit, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
+    <li class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-sm">
+                <%= recruit.title %>
+              </div>
+              <div class="col-xs">
+                <%= link_to "詳細", recruit_path, class: 'btn btn-info' %>
+                <%= link_to "削除", recruit, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </li>
   <% end %>
 </ul>
+
