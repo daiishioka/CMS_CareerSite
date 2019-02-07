@@ -1,9 +1,9 @@
-<%= link_to "戻る", companies_path, class: "btn btn-secondary btn-circle" %>
+<%= link_to "戻る", companies_path, class: "btn btn-outline-secondary btn-circle" %>
 
 <h1>企業詳細ページ</h1>
 <div class="row" id="company-show">
   <div class="col-md-3">
-    <h3>企業情報 <%= link_to "編集", edit_company_path(@company), class: "btn btn-primary" %></h3>
+    <h3>企業情報 <%= link_to "編集", edit_company_path(@company), class: "btn btn-outline-primary" %></h3>
     <p>
       <% if @company.image.attached? %>
         <%= image_tag @company.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>

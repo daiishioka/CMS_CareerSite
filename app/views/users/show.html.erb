@@ -1,8 +1,9 @@
-<h1><%= link_to "< 転職希望者詳細", users_path, class: "btn btn-info" %></h1>
-<div>
-  <%= link_to "編集", edit_user_path(@user), class: 'btn btn-info' %>
-  <%= link_to "削除", @user, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-danger' %>
-</div>
+<%= link_to "戻る", users_path, class: "btn btn-outline-secondary btn-circle" %>
+<h1>
+  転職希望者詳細
+  <%= link_to "編集", edit_user_path(@user), class: 'btn btn-outline-info' %>
+  <%= link_to "削除", @user, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-outline-danger' %>
+</h1>
   <% if @user.image.attached? %>
     <%= image_tag @user.image.variant(resize: "100x100") %>
   <% else %>
