@@ -1,6 +1,10 @@
 <%= link_to "戻る", companies_path, class: "btn btn-outline-secondary btn-circle" %>
 
-<h1>企業詳細ページ</h1>
+<h1>
+  企業詳細ページ
+  <%= link_to "+ 新規求人情報登録", new_recruit_path(company_id: @company.id), class: "btn btn-outline-primary align-items-center col-xs " %>
+  <%= link_to "+ 新規担当者登録", new_member_path(company_id: @company.id), class: "btn btn-outline-primary align-items-center col-xs " %>
+</h1>
 <div class="row" id="company-show">
   <div class="col-md-3">
     <h3>企業情報 <%= link_to "編集", edit_company_path(@company), class: "btn btn-outline-primary" %></h3>
@@ -32,6 +36,10 @@
     <p>
       資本金<br>
       <%= @company.capital_stock %> 円
+    </p>
+    <p>
+      電話番号<br>
+      <%= @company.telephone %>
     </p>
     <p>
       本社住所<br>

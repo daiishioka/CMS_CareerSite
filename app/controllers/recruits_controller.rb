@@ -3,6 +3,22 @@ class RecruitsController < ApplicationController
     @recruit = Recruit.find(params[:id])
   end
   
+  def new
+    @recruit = Recruit.new
+  end
+  
+  def create
+    @recruit = Recruit.new(recruit_params)
+    
+    if @recruit.save
+      flash[:success] = '新規求人情報を登録しました。'
+      redirect_to @recruit
+    else
+      flash.now[:danger] = '新規求人情報の登録に失敗しました。'
+      render :new
+    end
+  end
+  
   def edit
     @recruit = Recruit.find(params[:id])
   end
@@ -30,6 +46,6 @@ class RecruitsController < ApplicationController
   private
   
   def recruit_params
-    params.require(:recruit).permit(:title, :recruitment_background, :job_description, :requirement, :selection_process)
+    params.require(:recruit).permit(:title, :recruitment_background, :job_description, :requirement, :selection_process, :company_id)
   end
 end

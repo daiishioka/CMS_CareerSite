@@ -1,6 +1,22 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.page(params[:page]).per(5).search(params[:search])
+    @users = User.all.page(params[:page]).per(5)
+  end
+  
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      flash[:success] = '転職希望者を登録しました。'
+      redirect_to @user
+    else
+      flash.now[:danger] = '転職希望者の登録に失敗しました。'
+      render :new
+    end
   end
 
   def show
@@ -34,6 +50,6 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:image, :name, :sex, :birthday, :address, :telephone, :email, :academic_background, :resume_file, :career_file)
+    params.require(:user).permit(:image, :name, :sex, :birthday, :address, :telephone, :email, :academic_background, :resume_file, :career_file, :password, :password_confirmation)
   end
 end

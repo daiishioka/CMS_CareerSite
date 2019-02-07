@@ -2,6 +2,22 @@ class MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
   end
+  
+  def new
+    @member = Member.new
+  end
+
+  def create
+    @member = Member.new(member_params)
+    
+    if @member.save
+      flash[:success] = '転職希望者を登録しました。'
+      redirect_to @member
+    else
+      flash.now[:danger] = '転職希望者の登録に失敗しました。'
+      render :new
+    end
+  end
 
   def edit
     @member = Member.find(params[:id])
@@ -30,6 +46,6 @@ class MembersController < ApplicationController
   private
   
   def member_params
-    params.require(:member).permit(:name, :sex, :telephone, :email, :belonged_company)
+    params.require(:member).permit(:name, :sex, :telephone, :email, :belonged_company, :company_id, :password, :password_confirmation)
   end
 end

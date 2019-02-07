@@ -1,6 +1,22 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all.page(params[:page]).per(5).search(params[:search])
+    @companies = Company.all.page(params[:page]).per(5)
+  end
+  
+  def new
+    @company = Company.new
+  end 
+  
+  def create
+    @company = Company.new(company_params)
+    
+    if @company.save
+      flash[:success] = '転職希望者を登録しました。'
+      redirect_to @company
+    else
+      flash.now[:danger] = '転職希望者の登録に失敗しました。'
+      render :new
+    end
   end
   
   def show

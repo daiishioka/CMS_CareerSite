@@ -1,0 +1,28 @@
+<%= link_to "戻る", company_path(params[:company_id]), class: "btn btn-outline-secondary btn-circle" %>
+<h1>新規担当者登録</h1>
+
+<%= form_for(@member) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <%= f.hidden_field :company_id, :value => params[:company_id] %>
+  <div class="form-group">
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group" style="width:25%">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group" style="width:25%">
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" style="width:25%">
+    <%= f.label :password_confirmation, 'パスワード(確認)' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  
+  <%= f.submit '登録', class: "btn btn-outline-primary" %>
+<% end %>

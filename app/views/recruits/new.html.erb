@@ -1,0 +1,33 @@
+<%= link_to "戻る", company_path(params[:company_id]), class: "btn btn-outline-secondary btn-circle" %>
+<h1>新規求人情報登録</h1>
+
+<%= form_for(@recruit) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <%= f.hidden_field :company_id, :value => params[:company_id] %>
+  <div class="form-group">
+    <%= f.label :title, "求人タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :recruitment_background, "募集背景" %>
+    <%= f.text_area :recruitment_background, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :job_description, "仕事内容" %>
+    <%= f.text_area :job_description, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :requirement, "募集要項" %>
+    <%= f.text_area :requirement, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :selection_process, "選考方法" %>
+    <%= f.text_area :selection_process, class: "form-control" %>
+  </div>
+  
+  <%= f.submit '登録', class: "btn btn-outline-primary" %>
+<% end %>

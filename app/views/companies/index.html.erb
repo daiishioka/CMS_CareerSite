@@ -1,11 +1,10 @@
 <% if logged_in? %>
-<h1>企業一覧</h1>
+<h1>
+  企業一覧
+  <%= link_to "+ 新規企業登録", new_company_path, class: "btn btn-outline-primary align-items-center col-xs " %>
+</h1>
 
 <ul>
-<%= form_tag companies_path do %>
-  <%= text_field_tag :search, '', placeholder: "企業名" %>
-  <%= submit_tag "検索" ,name: nil ,class: "btn btn-outline-primary"%>
-<% end %>
   <% @companies.each do |company| %>
     <li class="card-deck">
       <div class="card">
