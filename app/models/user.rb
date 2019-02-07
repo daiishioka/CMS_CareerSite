@@ -1,22 +1,17 @@
 class User < ApplicationRecord
+  before_save { self.email.downcase! }
+  validates :name, presence:true, length: { maximum:50 }
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+                    uniqueness: { case_sensitive: false }
+  has_secure_password
+ 
   has_one_attached :image
-  has_one_attached :document
-
-  validate :correct_document_mime_type
-
+  
   private
 
-  def correct_document_mime_type
-    if document.attached? && !document.content_type.in?(%w(application/msword application/pdf))
-      errors.add(:document, 'Must be a PDF or a DOC file')
-    end
-  end
-
   def self.search(search)
-    if search
-      where(['name LIKE ?', "%#{search}%"])
-    else
-      return all
-    end
+    return User.all unless search
+    User.where(['name LIKE ?', "%#{search}%"])
   end
 end

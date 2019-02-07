@@ -12,29 +12,19 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   
-<div class="form-group">
-    <%= f.label :sex, '性別', {class: 'form-label'} %><br>
-  <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-outline-secondary active" style="width:50%">
-      <%= f.radio_button :sex, "男性", {checked: true} %> 男性
-    </label>
-    <label class="btn btn-outline-secondary" style="width:50%">
-      <%= f.radio_button :sex, "女性", {} %> 女性
-    </label>
-  </div>
-</div>
+
   
   <div class="form-group">
     <%= f.label :birthday, "生年月日" %>
-  <%= raw sprintf(
-            f.date_select(
-              :birthday,
-              use_month_numbers: true,
-              start_year: 1930,
-              discard_day: true,
-              date_separator: '%s'),
-            '年 ') + '月' 
-   %>
+    <%= raw sprintf(
+                f.date_select(
+                  :birthday,
+                  use_month_numbers: true,
+                  start_year: 1930,
+                  end_year: (Time.now.year - 18),
+                  default: Date.new(1989, 1, 1),
+                  date_separator: '%s'),
+                '年 ', '月 ') + '日' %>
   </div>
   
   <div class="form-group">
@@ -55,16 +45,6 @@
   <div class="form-group">
     <%= f.label :academic_background, "最終学歴" %>
     <%= f.text_field :academic_background, class: "form-control" %>
-  </div>
-
-  <div class="form-group" style="width:25%">
-    <%= f.label :resume_file, "履歴書" %>
-    <%= f.file_field :resume_file, class: "form-control" %>
-  </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :career_file, "職務経歴書" %>
-    <%= f.text_field :career_file, class: "form-control" %>
   </div>
   
   <%= f.submit '投稿', class: "btn btn-outline-primary" %>
