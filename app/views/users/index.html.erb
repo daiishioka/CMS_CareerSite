@@ -2,6 +2,10 @@
 <h1>転職希望者一覧</h1>
 
 <ul>
+<%= form_tag users_path do %>
+  <%= text_field_tag :search, '', placeholder: "転職希望者名" %>
+  <%= submit_tag "検索" ,name: nil ,class: "btn btn-outline-primary"%>
+<% end %>
   <% @users.each do |user| %>
     <li class="card-deck">
       <div class="card">
@@ -20,8 +24,8 @@
                 <%= user.email %>
               </div>
               <div class="col-xs">
-                <%= link_to "詳細", user_path(user), class: "btn btn-info" %>
-                <%= link_to "削除", user, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいでしょうか？' } %>
+                <%= link_to "詳細", user_path(user), class: "btn btn-outline-info" %>
+                <%= link_to "削除", user, method: :delete, class: "btn btn-outline-danger", data: { confirm: '本当に削除してよろしいでしょうか？' } %>
               </div>
             </div>
           </div>

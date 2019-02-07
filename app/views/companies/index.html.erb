@@ -1,6 +1,11 @@
 <% if logged_in? %>
 <h1>企業一覧</h1>
+
 <ul>
+<%= form_tag companies_path do %>
+  <%= text_field_tag :search, '', placeholder: "企業名" %>
+  <%= submit_tag "検索" ,name: nil ,class: "btn btn-outline-primary"%>
+<% end %>
   <% @companies.each do |company| %>
     <li class="card-deck">
       <div class="card">
@@ -19,8 +24,8 @@
                 <%= company.telephone %>
               </div>
               <div class="col-xs">
-                <%= link_to "詳細", company_path(company), class: "btn btn-info" %>
-                <%= link_to "削除", company, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいでしょうか？' }  %>
+                <%= link_to "詳細", company_path(company), class: "btn btn-outline-info" %>
+                <%= link_to "削除", company, method: :delete, class: "btn btn-outline-danger", data: { confirm: '本当に削除してよろしいでしょうか？' }  %>
               </div>
             </div>
           </div>
