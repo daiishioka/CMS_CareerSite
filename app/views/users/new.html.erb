@@ -10,12 +10,12 @@
     <%= f.file_field :image, class: "form-control" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :name, "名前 *" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :sex, '性別', class: 'form-label' %><br>
     <div class="btn-group" data-toggle="buttons">
       <label class="btn btn-outline-secondary" style="width:50%">
@@ -27,7 +27,7 @@
     </div>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :birthday, "生年月日" %><br>
     <%= raw sprintf(
                 f.date_select(
@@ -40,12 +40,12 @@
                 '年 ', '月 ') + '日' %>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :address, "住所" %>
     <%= f.text_field :address, class: "form-control" %>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :telephone, "電話番号" %>
     <%= f.text_field :telephone, class: "form-control" %> 
   </div>
@@ -55,7 +55,7 @@
     <%= f.email_field :email, class: "form-control" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :academic_background, "最終学歴" %>
     <%= f.text_field :academic_background, class: "form-control" %>
   </div>
