@@ -1,9 +1,11 @@
 <%= link_to "戻る", recruit_path, class: "btn btn-outline-secondary btn-circle" %>
 <h1>求人情報編集</h1>
+<p>* 入力必須項目</p>
 
 <%= form_for(@recruit) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group">
-    <%= f.label :title, "求人タイトル" %>
+    <%= f.label :title, "求人タイトル * (25文字以内)" %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
 

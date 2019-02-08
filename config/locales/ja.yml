@@ -2,7 +2,7 @@ ja:
   activerecord:
     attributes:
       user:
-        accepted: 利用規約、及び、個人情報の項目
+        accepted: 項目
         name: 名前
         email: メールアドレス
         password: パスワード
@@ -10,3 +10,5 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+      recruit:
+        title: タイトル

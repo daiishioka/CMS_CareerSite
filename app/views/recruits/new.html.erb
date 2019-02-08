@@ -1,11 +1,12 @@
 <%= link_to "戻る", company_path(params[:company_id]), class: "btn btn-outline-secondary btn-circle" %>
 <h1>新規求人情報登録</h1>
+<p>* 入力必須項目</p>
 
 <%= form_for(@recruit) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
   <%= f.hidden_field :company_id, :value => params[:company_id] %>
   <div class="form-group">
-    <%= f.label :title, "求人タイトル" %>
+    <%= f.label :title, "求人タイトル * (25文字以内)" %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
 
