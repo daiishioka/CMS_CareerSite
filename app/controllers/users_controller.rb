@@ -42,14 +42,14 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    
+
     flash[:success] = "転職希望者を削除しました"
-    redirect_back(fallback_location: users_path)
+    redirect_to "/users"
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:image, :name, :sex, :birthday, :address, :telephone, :email, :academic_background, :resume_file, :career_file, :password, :password_confirmation)
+    params.require(:user).permit(:image, :name, :sex, :birthday, :address, :telephone, :email, :academic_background, :resume_file, :career_file, :password, :password_confirmation, :age, :age_calculate)
   end
 end

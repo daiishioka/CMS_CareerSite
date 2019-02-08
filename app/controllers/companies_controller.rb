@@ -51,7 +51,7 @@ class CompaniesController < ApplicationController
     @company.destroy
     
     flash[:success] = '企業を削除しました。'
-    redirect_back(fallback_location: company_path)
+    redirect_to "/companies"
   end
   
   private

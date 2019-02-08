@@ -39,6 +39,16 @@
                 '年 ', '月 ') + '日' %>
   </div>
   
+  <div class="field">
+    <%= check_box_tag :age_calculate %>
+    <%= label_tag :age_calculate, "年齢を生年月日から計算する" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :age, "年齢" %>
+    <%= f.text_field :age, class: "form-control" %>
+  </div>
+  
   <div class="form-group">
     <%= f.label :address, "住所" %>
     <%= f.text_field :address, class: "form-control" %>
