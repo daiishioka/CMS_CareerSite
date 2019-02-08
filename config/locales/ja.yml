@@ -6,9 +6,12 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        sex: 性別
       member:
         name: 名前
         email: メールアドレス
         password: パスワード
       recruit:
         title: タイトル
+      company:
+        name: 企業名
