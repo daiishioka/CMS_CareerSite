@@ -7,10 +7,7 @@ class Company < ApplicationRecord
   has_many :members, dependent: :destroy
   
   def self.search(search)
-    if search
-      where(['name LIKE ?', "%#{search}%"]) 
-    else
-      all
-    end
+    return Company.all unless search
+    Company.where(['name LIKE ?', "%#{search}%"])
   end
 end

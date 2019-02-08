@@ -5,6 +5,12 @@
 </h1>
 
 <ul>
+  <div class="form-group">
+    <%= form_tag(users_path, :method => 'get' ) do %>
+      <%= text_field_tag :search, '', placeholder: "転職希望者名" %>
+      <%= submit_tag 'Search', :name => nil, class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
   <% @users.each do |user| %>
     <li class="card-deck">
       <div class="card">

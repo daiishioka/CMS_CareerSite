@@ -11,9 +11,7 @@ class User < ApplicationRecord
   has_secure_password
  
   has_one_attached :image
-
-  private
-
+  
   def self.search(search)
     return User.all unless search
     User.where(['name LIKE ?', "%#{search}%"])
