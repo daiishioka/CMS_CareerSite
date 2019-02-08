@@ -24,7 +24,7 @@
               </div>
               <div class="col-xs">
                 <%= link_to "詳細", company_path(company), class: "btn btn-outline-info" %>
-                <%= link_to "削除", company, method: :delete, class: "btn btn-outline-danger", data: { confirm: '本当に削除してよろしいでしょうか？' }  %>
+                <%= link_to "編集", edit_company_path(company), class: "btn btn-outline-info" %>
               </div>
             </div>
           </div>

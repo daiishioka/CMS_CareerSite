@@ -4,6 +4,7 @@
   企業詳細ページ
   <%= link_to "+ 新規求人情報登録", new_recruit_path(company_id: @company.id), class: "btn btn-outline-primary align-items-center col-xs " %>
   <%= link_to "+ 新規担当者登録", new_member_path(company_id: @company.id), class: "btn btn-outline-primary align-items-center col-xs " %>
+  <%= link_to "削除", @company, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-outline-danger' %>
 </h1>
 <div class="row" id="company-show">
   <div class="col-md-3">

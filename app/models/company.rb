@@ -3,8 +3,8 @@ class Company < ApplicationRecord
 
   has_one_attached :image
   
-  has_many :recruits
-  has_many :members
+  has_many :recruits, dependent: :destroy
+  has_many :members, dependent: :destroy
   
   def self.search(search)
     if search
