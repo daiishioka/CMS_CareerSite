@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all.page(params[:page]).per(5)
+    @companies = Company.all.page(params[:page]).per(5).search(params[:search])
   end
   
   def new

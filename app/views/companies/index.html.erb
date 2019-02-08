@@ -5,6 +5,12 @@
 </h1>
 
 <ul>
+  <div class="form-group">
+    <%= form_tag(companies_path, :method => 'get' ) do %>
+      <%= text_field_tag :search, '', placeholder: "企業名" %>
+      <%= submit_tag 'Search', :name => nil, class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
   <% @companies.each do |company| %>
     <li class="card-deck">
       <div class="card">

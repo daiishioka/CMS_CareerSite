@@ -39,3 +39,7 @@ h3.members{
 .recruit h3{
   color: #1e90ff;
 }
+input[type="text"] {
+        width: 200px;
+        height: 36px;
+    }

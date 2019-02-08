@@ -8,10 +8,9 @@ class Company < ApplicationRecord
   
   def self.search(search)
     if search
-      where(['name LIKE ?', "%#{search}%"])
+      where(['name LIKE ?', "%#{search}%"]) 
     else
-      return all
+      all
     end
   end
-  
 end
