@@ -1,5 +1,6 @@
 <%= link_to "戻る", users_path, class: "btn btn-outline-secondary btn-circle" %>
 <h1>新規転職希望者登録</h1>
+<p>* 入力必須項目</p>
 
 <%= form_for(@user) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
@@ -39,16 +40,6 @@
                 '年 ', '月 ') + '日' %>
   </div>
   
-  <div class="field">
-    <%= check_box_tag :age_calculate %>
-    <%= label_tag :age_calculate, "年齢を生年月日から計算する" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :age, "年齢" %>
-    <%= f.text_field :age, class: "form-control" %>
-  </div>
-  
   <div class="form-group">
     <%= f.label :address, "住所" %>
     <%= f.text_field :address, class: "form-control" %>
@@ -70,7 +61,7 @@
   </div>
 
   <div class="form-group" style="width:25%">
-    <%= f.label :password, 'パスワード *' %>
+    <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
     <%= f.password_field :password, class: 'form-control' %>
   </div>
 
@@ -78,6 +69,11 @@
     <%= f.label :password_confirmation, 'パスワード(確認) *' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
+  
+<div class="field text-left">
+  <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+  <%= f.label '利用規約、及び、個人情報の取扱に同意する' %>
+</div>
 
   <%= f.submit '登録', class: "btn btn-outline-primary" %>
 <% end %>

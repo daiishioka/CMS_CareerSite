@@ -1,5 +1,6 @@
 <%= link_to "戻る", users_path, class: "btn btn-outline-secondary btn-circle" %>
 <h1>転職希望者情報編集</h1>
+<p>* 入力必須項目</p>
 
 <%= form_for(@user) do |f| %>
   <div class="form-group" style="width:25%">
@@ -8,14 +9,12 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :name, "名前" %>
+    <%= f.label :name, "名前 *" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
   
-
-  
   <div class="form-group">
-    <%= f.label :birthday, "生年月日" %>
+    <%= f.label :birthday, "生年月日" %><br>
     <%= raw sprintf(
                 f.date_select(
                   :birthday,
@@ -25,16 +24,6 @@
                   default: Date.new(1989, 1, 1),
                   date_separator: '%s'),
                 '年 ', '月 ') + '日' %>
-  </div>
-
-  <div class="field">
-    <%= check_box_tag :age_calculate %>
-    <%= label_tag :age_calculate, "年齢を生年月日から計算する" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :age, "年齢" %>
-    <%= f.text_field :age, class: "form-control" %>
   </div>
   
   <div class="form-group">
@@ -48,7 +37,7 @@
   </div>
 
   <div class="form-group" style="width:25%">
-    <%= f.label :email, "メールアドレス" %>
+    <%= f.label :email, "メールアドレス *" %>
     <%= f.email_field :email, class: "form-control" %>
   </div>
 
@@ -57,6 +46,20 @@
     <%= f.text_field :academic_background, class: "form-control" %>
   </div>
   
+  <div class="form-group" style="width:25%">
+    <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" style="width:25%">
+    <%= f.label :password_confirmation, 'パスワード(確認) *' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  
+  <div class="field text-left">
+    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+    <%= f.label '内容の変更に同意する' %>
+  </div>
   <%= f.submit '投稿', class: "btn btn-outline-primary" %>
 <% end %>
 

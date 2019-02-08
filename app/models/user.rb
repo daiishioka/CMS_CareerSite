@@ -5,14 +5,11 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   validates :birthday, presence: true
+  validates :accepted, presence: {message: 'にチェックしてください'}
+  validates :password, length: { minimum:6, maximum:12 }
   has_secure_password
  
   has_one_attached :image
-  
-  def age
-    date_format = "%Y%m%d"
-    (Date.today.strftime(date_format).to_i - self.birthday.strftime(date_format).to_i) / 10000
-  end
 
   private
 
