@@ -1,26 +1,49 @@
 <%= link_to "戻る", company_path(params[:company_id]), class: "btn btn-outline-secondary btn-circle" %>
 <h1>新規担当者登録</h1>
+<p>* 入力必須項目</p>
 
 <%= form_for(@member) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
   <%= f.hidden_field :company_id, :value => params[:company_id] %>
-  <div class="form-group">
-    <%= f.label :name, "名前" %>
+  <div class="form-group" style="width:25%">
+    <%= f.label :name, "名前 *" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group" style="width:25%">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, class: "form-control" %>
+    <%= f.label :sex, '性別', class: 'form-label' %><br>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-outline-secondary" style="width:50%">
+        <%= f.radio_button :sex, "男性" %> 男性
+      </label>
+      <label class="btn btn-outline-secondary" style="width:50%">
+        <%= f.radio_button :sex, "女性" %> 女性
+      </label>
+    </div>
   </div>
 
   <div class="form-group" style="width:25%">
-    <%= f.label :password, 'パスワード' %>
+    <%= f.label :telephone, "電話番号" %>
+    <%= f.text_field :telephone, class: "form-control" %>
+  </div>
+  
+  <div class="form-group" style="width:25%">
+    <%= f.label :email, "メールアドレス *" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  
+  <div class="form-group" style="width:25%">
+    <%= f.label :belonged_company, "所属企業" %>
+    <%= f.text_field :belonged_company, class: "form-control" %>
+  </div>
+
+  <div class="form-group" style="width:25%">
+    <%= f.label :password, 'パスワード *' %>
     <%= f.password_field :password, class: 'form-control' %>
   </div>
 
   <div class="form-group" style="width:25%">
-    <%= f.label :password_confirmation, 'パスワード(確認)' %>
+    <%= f.label :password_confirmation, 'パスワード(確認) *' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   
