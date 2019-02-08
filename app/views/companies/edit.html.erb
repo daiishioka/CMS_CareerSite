@@ -1,7 +1,9 @@
 <%= link_to "戻る", company_path, class: "btn btn-outline-secondary btn-circle" %>
 <h1>企業情報編集</h1>
+<p>* 入力必須項目</p>
 
 <%= form_for(@company) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group" style="width:25%">
     <%= f.label :image, "アイコン" %>
     <%= f.file_field :image, class: "form-control" %>
