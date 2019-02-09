@@ -9,7 +9,7 @@
                 <%= recruit.title %>
               </div>
               <div class="col-xs">
-                <%= link_to "詳細", recruit_path, class: 'btn btn-outline-info' %>
+                <%= link_to "詳細", recruit_path(recruit), class: 'btn btn-outline-info' %>
                 <%= link_to "削除", recruit, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-outline-danger' %>
               </div>
             </div>

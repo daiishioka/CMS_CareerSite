@@ -4,7 +4,8 @@ class RecruitsController < ApplicationController
   end
   
   def new
-    @recruit = Recruit.new
+    @company = Company.find(params[:company_id])
+    @recruit = Recruit.new(company_id: @company.id)
   end
   
   def create
@@ -40,7 +41,7 @@ class RecruitsController < ApplicationController
     @recruit.destroy
     
     flash[:success] = "求人情報を削除しました"
-    redirect_back(fallback_location: company_path)
+    redirect_to @recruit.company
   end
   
   private
