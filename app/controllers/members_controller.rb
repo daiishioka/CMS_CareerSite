@@ -4,7 +4,8 @@ class MembersController < ApplicationController
   end
   
   def new
-    @member = Member.new
+    @company = Company.find(params[:company_id])
+    @member = Member.new(company_id: @company.id)
   end
 
   def create

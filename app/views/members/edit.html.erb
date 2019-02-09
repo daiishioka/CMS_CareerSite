@@ -1,15 +1,16 @@
-<%= link_to "戻る", member_path, class: "btn btn-outline-secondary btn-circle" %>
+<%= link_to "戻る", @member, class: "btn btn-outline-secondary btn-circle" %>
 <h1>担当者情報編集</h1>
 <p>* 入力必須項目</p>
 
 <%= form_for(@member) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group" style="width:25%">
     <%= f.label :name, "名前 *" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group" style="width:25%">
-    <%= f.label :sex, '性別', class: 'form-label' %><br>
+    <%= f.label :sex, '性別 *', class: 'form-label' %><br>
     <div class="btn-group" data-toggle="buttons">
       <label class="btn btn-outline-secondary" style="width:50%">
         <%= f.radio_button :sex, "男性" %> 男性
@@ -36,7 +37,7 @@
   </div>
   
   <div class="form-group" style="width:25%">
-    <%= f.label :password, 'パスワード *' %>
+    <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
     <%= f.password_field :password, class: 'form-control' %>
   </div>
 

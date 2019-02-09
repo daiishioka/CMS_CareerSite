@@ -58,3 +58,4 @@ gem 'mini_magick', '~> 4.8'
 gem 'rails-i18n'
 gem "carrierwave"
 gem 'combine_pdf'
+gem 'file_validators'
