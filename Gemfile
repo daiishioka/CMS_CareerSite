@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 gem 'mini_magick', '~> 4.8'
 gem 'rails-i18n'
+gem "carrierwave"
+gem 'combine_pdf'

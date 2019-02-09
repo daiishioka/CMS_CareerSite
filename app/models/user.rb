@@ -12,8 +12,29 @@ class User < ApplicationRecord
  
   has_one_attached :image
   
+  has_one_attached :resume_file
+  validate :correct_resume_file_mime_type
+  
+  has_one_attached :career_file
+  validate :correct_career_file_mime_type
+
   def self.search(search)
     return User.all unless search
     User.where(['name LIKE ?', "%#{search}%"])
   end
+  
+  private
+
+  def correct_resume_file_mime_type
+    if resume_file.attached? && !resume_file.content_type.in?(%w(application/pdf))
+      errors.add(:resume_file, 'PDFファイルをアップデートして下さい')
+    end
+  end
+  
+  def correct_career_file_mime_type
+    if career_file.attached? && !career_file.content_type.in?(%w(application/pdf))
+      errors.add(:career_file, 'PDFファイルをアップデートして下さい')
+    end
+  end
+
 end

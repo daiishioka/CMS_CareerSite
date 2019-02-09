@@ -13,7 +13,7 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="width:25%">
     <%= f.label :sex, '性別 *', class: 'form-label' %><br>
     <div class="btn-group" data-toggle="buttons">
       <label class="btn btn-outline-secondary" style="width:50%">
@@ -72,6 +72,17 @@
     <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
     <%= f.label '内容の変更に同意する' %>
   </div>
+  
+  <div class="form-group" style="width:25%">
+    <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
+    <%= f.file_field :resume_file, class: "form-control" %>
+  </div>
+  
+  <div class="form-group" style="width:25%">
+    <%= f.label :career_file, "履歴書ファイル(pdf)" %>
+    <%= f.file_field :career_file, class: "form-control" %>
+  </div>
+
   <%= f.submit '投稿', class: "btn btn-outline-primary" %>
 <% end %>
 

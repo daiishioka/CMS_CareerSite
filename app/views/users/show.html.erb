@@ -20,3 +20,11 @@
 <p>電話番号: <%= @user.telephone %></p>
 <p>メールアドレス: <%= @user.email %></p>
 <p>最終学歴: <%= @user.academic_background %></p>
+
+<% if @user.resume_file.attached? %>
+  <p>履歴書ファイル: <%= link_to "履歴書プレビュー", rails_blob_path(@user.resume_file, disposition: "resume_file") %></p>
+<% end %>
+
+<% if @user.career_file.attached? %>
+  <p>職務経歴書ファイル: <%= link_to "職務経歴書プレビュー", rails_blob_path(@user.career_file, disposition: "career_file") %></p>
+<% end %>
