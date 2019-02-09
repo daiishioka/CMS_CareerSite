@@ -70,10 +70,20 @@
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   
-<div class="field text-left">
-  <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
-  <%= f.label '利用規約、及び、個人情報の取扱に同意する' %>
-</div>
+  <div class="form-group" style="width:25%">
+    <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
+    <%= f.file_field :resume_file, class: "form-control" %>
+  </div>
+  
+  <div class="form-group" style="width:25%">
+    <%= f.label :career_file, "職務経歴書ファイル(pdf)" %>
+    <%= f.file_field :career_file, class: "form-control" %>
+  </div>
+  
+  <div class="field text-left">
+    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+    <%= f.label '利用規約、及び、個人情報の取扱に同意する' %>
+  </div>
 
   <%= f.submit '登録', class: "btn btn-outline-primary" %>
 <% end %>

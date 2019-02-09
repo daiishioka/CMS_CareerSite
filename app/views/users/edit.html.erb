@@ -1,8 +1,10 @@
-<%= link_to "戻る", users_path, class: "btn btn-outline-secondary btn-circle" %>
+<%= link_to "戻る", @user, class: "btn btn-outline-secondary btn-circle" %>
 <h1>転職希望者情報編集</h1>
 <p>* 入力必須項目</p>
 
 <%= form_for(@user) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  
   <div class="form-group" style="width:25%">
     <%= f.label :image, "アイコン" %>
     <%= f.file_field :image, class: "form-control" %>
@@ -13,7 +15,7 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   
-  <div class="form-group" style="width:25%">
+  <div class="form-group">
     <%= f.label :sex, '性別 *', class: 'form-label' %><br>
     <div class="btn-group" data-toggle="buttons">
       <label class="btn btn-outline-secondary" style="width:50%">
@@ -68,11 +70,6 @@
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   
-  <div class="field text-left">
-    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
-    <%= f.label '内容の変更に同意する' %>
-  </div>
-  
   <div class="form-group" style="width:25%">
     <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
     <%= f.file_field :resume_file, class: "form-control" %>
@@ -81,6 +78,11 @@
   <div class="form-group" style="width:25%">
     <%= f.label :career_file, "履歴書ファイル(pdf)" %>
     <%= f.file_field :career_file, class: "form-control" %>
+  </div>
+
+  <div class="field text-left">
+    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+    <%= f.label '内容の変更に同意する' %>
   </div>
 
   <%= f.submit '投稿', class: "btn btn-outline-primary" %>
