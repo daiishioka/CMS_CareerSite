@@ -1,4 +1,4 @@
-<%= link_to "戻る", company_path, class: "btn btn-outline-secondary btn-circle" %>
+<%= link_to "戻る", @company, class: "btn btn-outline-secondary btn-circle" %>
 <h1>企業情報編集</h1>
 <p>* 入力必須項目</p>
 
@@ -10,21 +10,21 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :name, "企業名" %>
+    <%= f.label :name, "企業名 *" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
   
   <div class="form-group">
-    <%= f.label :established_yearmonth, "設立年" %>
-  <%= raw sprintf(
-            f.date_select(
-              :established_yearmonth,
-              use_month_numbers: true,
-              start_year: 1930,
-              discard_day: true,
-              date_separator: '%s'),
-            '年 ') + '月'
-   %>
+    <%= f.label :established_yearmonth, "設立年" %><br>
+    <%= raw sprintf(
+              f.date_select(
+                :established_yearmonth,
+                use_month_numbers: true,
+                start_year: 1930,
+                discard_day: true,
+                date_separator: '%s'),
+              '年 ') + '月'
+     %>
   </div>
   
   <div class="form-group">

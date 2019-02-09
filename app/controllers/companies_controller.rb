@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all.page(params[:page]).per(5).search(params[:search])
+    @companies = Company.all.page(params[:page]).order('created_at DESC').per(5).search(params[:search])
   end
   
   def new
@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
     @recruits = @company.recruits.order('created_at DESC').page(params[:page]).per(2)
     
     @member = @company.members.build
-    @members = @company.members.order('created_at DESC').page(params[:page]).per(2)
+    @members = @company.members.order('created_at DESC')
   end
   
   def edit

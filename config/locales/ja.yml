@@ -6,12 +6,19 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(確認)
         sex: 性別
+        resume_file: 履歴書のPDFファイル
+        career_file: 職務経歴書のPDFファイル
+        image: JPGもしくはPNGファイル
       member:
         name: 名前
+        sex: 性別
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(確認)
       recruit:
         title: タイトル
       company:
         name: 企業名
+        image: JPGもしくはPNGファイル
