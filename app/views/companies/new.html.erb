@@ -4,62 +4,66 @@
 
 <%= form_for(@company) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form-group" style="width:25%">
-    <%= f.label :image, "アイコン" %>
-    <%= f.file_field :image, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :name, "企業名 *" %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :established_yearmonth, "設立年" %>
-  <%= raw sprintf(
-            f.date_select(
-              :established_yearmonth,
-              use_month_numbers: true,
-              start_year: 1930,
-              discard_day: true,
-              date_separator: '%s'),
-            '年 ') + '月'
-   %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :ceo, "代表者" %>
-    <%= f.text_field :ceo, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :employees, "従業員数" %>
-    <%= f.text_field :employees, class: "form-control" %> 人
-  </div>
-
-  <div class="form-group">
-    <%= f.label :capital_stock, "資本金" %>
-    <%= f.text_field :capital_stock, class: "form-control" %> 円
-  </div>
-
-  <div class="form-group">
-    <%= f.label :telephone, "電話番号" %>
-    <%= f.text_field :telephone, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :headquarter_address, "本社住所" %>
-    <%= f.text_field :headquarter_address, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :business_description, "事業内容" %>
-    <%= f.text_area :business_description, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :homepage, "ホームページ" %>
-    <%= f.text_field :homepage, class: "form-control" %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :image, "アイコン" %>
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :name, "企業名 *" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :established_yearmonth, "設立年" %>
+      <%= raw sprintf(
+                f.date_select(
+                  :established_yearmonth,
+                  use_month_numbers: true,
+                  start_year: 1930,
+                  discard_day: true,
+                  date_separator: '%s'),
+                '年 ') + '月'
+       %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :ceo, "代表者" %>
+        <%= f.text_field :ceo, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :employees, "従業員数" %>
+        <%= f.text_field :employees, class: "form-control" %> 人
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :capital_stock, "資本金" %>
+        <%= f.text_field :capital_stock, class: "form-control" %> 円
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :telephone, "電話番号" %>
+        <%= f.text_field :telephone, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :headquarter_address, "本社住所" %>
+        <%= f.text_field :headquarter_address, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :business_description, "事業内容" %>
+        <%= f.text_area :business_description, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :homepage, "ホームページ" %>
+        <%= f.text_field :homepage, class: "form-control" %>
+      </div>
+    </div>
   </div>
   <%= f.submit '登録', class: "btn btn-outline-primary" %>
 <% end %>

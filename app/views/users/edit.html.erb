@@ -4,87 +4,89 @@
 
 <%= form_for(@user) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :image, "アイコン" %>
-    <%= f.file_field :image, class: "form-control" %>
-  </div>
-
-  <div class="form-group" style="width:25%">
-    <%= f.label :name, "名前 *" %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :sex, '性別 *', class: 'form-label' %><br>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-outline-secondary" style="width:50%">
-        <%= f.radio_button :sex, "男性" %> 男性
-      </label>
-      <label class="btn btn-outline-secondary" style="width:50%">
-        <%= f.radio_button :sex, "女性" %> 女性
-      </label>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :image, "アイコン" %>
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :name, "名前 *" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :sex, '性別 *', class: 'form-label' %><br>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-outline-secondary" style="width:50%">
+            <%= f.radio_button :sex, "男性" %> 男性
+          </label>
+          <label class="btn btn-outline-secondary" style="width:50%">
+            <%= f.radio_button :sex, "女性" %> 女性
+          </label>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :birthday, "生年月日" %><br>
+        <%= raw sprintf(
+                    f.date_select(
+                      :birthday,
+                      use_month_numbers: true,
+                      start_year: 1930,
+                      end_year: (Time.now.year - 18),
+                      default: Date.new(1989, 1, 1),
+                      date_separator: '%s'),
+                    '年 ', '月 ') + '日' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :telephone, "電話番号" %>
+        <%= f.text_field :telephone, class: "form-control" %> 
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス *" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :academic_background, "最終学歴" %>
+        <%= f.text_field :academic_background, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'パスワード(確認) *' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
+        <%= f.file_field :resume_file, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :career_file, "履歴書ファイル(pdf)" %>
+        <%= f.file_field :career_file, class: "form-control" %>
+      </div>
+    
+      <div class="field text-left">
+        <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+        <%= f.label '内容の変更に同意する' %>
+      </div>
     </div>
   </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :birthday, "生年月日" %><br>
-    <%= raw sprintf(
-                f.date_select(
-                  :birthday,
-                  use_month_numbers: true,
-                  start_year: 1930,
-                  end_year: (Time.now.year - 18),
-                  default: Date.new(1989, 1, 1),
-                  date_separator: '%s'),
-                '年 ', '月 ') + '日' %>
-  </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, class: "form-control" %>
-  </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :telephone, "電話番号" %>
-    <%= f.text_field :telephone, class: "form-control" %> 
-  </div>
-
-  <div class="form-group" style="width:25%">
-    <%= f.label :email, "メールアドレス *" %>
-    <%= f.email_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group" style="width:25%">
-    <%= f.label :academic_background, "最終学歴" %>
-    <%= f.text_field :academic_background, class: "form-control" %>
-  </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group" style="width:25%">
-    <%= f.label :password_confirmation, 'パスワード(確認) *' %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
-    <%= f.file_field :resume_file, class: "form-control" %>
-  </div>
-  
-  <div class="form-group" style="width:25%">
-    <%= f.label :career_file, "履歴書ファイル(pdf)" %>
-    <%= f.file_field :career_file, class: "form-control" %>
-  </div>
-
-  <div class="field text-left">
-    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
-    <%= f.label '内容の変更に同意する' %>
-  </div>
-
   <%= f.submit '投稿', class: "btn btn-outline-primary" %>
 <% end %>
 

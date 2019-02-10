@@ -7,6 +7,8 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ml-auto">
 				  <% if logged_in? %>
+						<li><%= link_to "登録企業一覧", companies_path, class: "btn btn-info fas fa-building" %></li>
+						<li><%= link_to "転職希望者一覧", users_path, class: "btn btn-info fas fa-user" %></li>
 				    <li><%= link_to 'ログアウト', logout_path, method: :delete, class: "btn btn-info" %></li>
           <% end %>
 				</ul>	
