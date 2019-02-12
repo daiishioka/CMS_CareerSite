@@ -56,6 +56,16 @@
         <%= f.email_field :email, class: "form-control" %>
       </div>
     
+      
+      <div class="field">
+        <% %w(html css javascript ruby php c perl java go scala cobol SQL swift).each.with_index do |skill,i| %>
+        <label>
+          <%= f.check_box  :skill, {multiple: true}, skill, nil %>
+          <%= skill %>
+        </label>
+        <% end %>
+      </div>
+    
       <div class="form-group">
         <%= f.label :academic_background, "最終学歴" %>
         <%= f.text_field :academic_background, class: "form-control" %>

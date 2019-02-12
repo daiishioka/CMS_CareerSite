@@ -38,7 +38,12 @@
                       end_year: (Time.now.year - 18),
                       default: Date.new(1989, 1, 1),
                       date_separator: '%s'),
-                    '年 ', '月 ') + '日' %>
+                    '年 ', '月 ') + '日'  %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :age, "年齢" %>
+        <%= f.number_field :age, disabled: true, class: "form-control" %>
       </div>
       
       <div class="form-group">
@@ -54,6 +59,15 @@
       <div class="form-group">
         <%= f.label :email, "メールアドレス *" %>
         <%= f.email_field :email, class: "form-control" %>
+      </div>
+    
+      <div class="field">
+        <% %w(html css javascript ruby php c perl java go scala cobol SQL swift).each.with_index do |skill,i| %>
+        <label>
+          <%= f.check_box  :skill, {multiple: true}, skill, nil %>
+          <%= skill %>
+        </label>
+        <% end %>
       </div>
     
       <div class="form-group">
@@ -77,7 +91,7 @@
       </div>
       
       <div class="form-group">
-        <%= f.label :career_file, "履歴書ファイル(pdf)" %>
+        <%= f.label :career_file, "職務経歴書ファイル(pdf)" %>
         <%= f.file_field :career_file, class: "form-control" %>
       </div>
     
