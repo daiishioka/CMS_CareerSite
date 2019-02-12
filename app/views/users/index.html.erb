@@ -1,47 +1,46 @@
 <% if logged_in? %>
-<h1>
-  転職希望者一覧
-  <%= link_to "+ 新規転職希望者登録", signup_path, class: "btn btn-outline-primary align-items-center col-xs " %>
-</h1>
-
-<ul>
-  <div class="form-group">
-    <%= form_tag(users_path, :method => 'get' ) do %>
-      <%= text_field_tag :search, '', placeholder: "転職希望者名" %>
-      <%= submit_tag 'Search', :name => nil, class: 'btn btn-outline-primary' %>
-    <% end %>
-  </div>
-  <% @users.each do |user| %>
-    <li class="card-deck">
-      <div class="card">
-        <div class="card-body">
-          <div class="container">
-            <div class="row align-items-center">
-            <% if user.image.attached? %>
-              <%= image_tag user.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
-            <% else %>
-              <%= image_tag "/person.png", class: "img-thumbnail rounded-circle" %>
-            <% end %>
-              <div class="col-sm">
-                <%= user.name %>
-              </div>
-              <div class="col-sm">
-                <%= user.email %>
-              </div>
-              <div class="col-xs">
-                <%= link_to "詳細", user_path(user), class: "btn btn-outline-info" %>
-                <%= link_to "編集", edit_user_path(user), class: "btn btn-outline-info" %>
+  <h1>
+    転職希望者一覧
+    <%= link_to "+ 新規転職希望者登録", signup_path, class: "btn btn-outline-primary align-items-center col-xs " %>
+  </h1>
+  
+  <ul>
+    <div class="form-group">
+      <%= form_tag(users_path, :method => 'get' ) do %>
+        <%= text_field_tag :search, '', placeholder: "名前" %>
+        <%= submit_tag 'Search', :name => nil, :sex => nil %>
+      <% end %>
+    </div>
+    <% @users.each do |user| %>
+      <li class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <div class="container">
+              <div class="row align-items-center">
+              <% if user.image.attached? %>
+                <%= image_tag user.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
+              <% else %>
+                <%= image_tag "/person.png", class: "img-thumbnail rounded-circle" %>
+              <% end %>
+                <div class="col-sm">
+                  <%= user.name %>
+                </div>
+                <div class="col-sm">
+                  <%= user.email %>
+                </div>
+                <div class="col-xs">
+                  <%= link_to "詳細", user_path(user), class: "btn btn-outline-info" %>
+                  <%= link_to "編集", edit_user_path(user), class: "btn btn-outline-info" %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </li>
-  <% end %>
-  <%= paginate @users %>
-</ul>
+      </li>
+    <% end %>
+    <%= paginate @users %>
+  </ul>
 
 <% else %>
   <%= render "sessions/login_form" %>
 <% end %>
-  

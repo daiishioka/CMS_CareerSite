@@ -10,18 +10,44 @@ class User < ApplicationRecord
   validate :correct_image_mime_type
   validate :correct_resume_file_mime_type
   validate :correct_career_file_mime_type
-
   validates :accepted, presence: {message: 'にチェックしてください'}
   
+  belongs_to :skill, optional: true
+  
   has_secure_password
+
  
   has_one_attached :image
   has_one_attached :resume_file
   has_one_attached :career_file
 
-  def self.search(search)
-    return User.all unless search
-    User.where(['name LIKE ?', "%#{search}%"])
+  def self.search(keyword)
+      if keyword && keyword != ""
+        words = keyword.to_s.split(" ")
+        columns = ["name", "sex"]
+        query = []
+        result = []
+   
+        columns.each do |column|
+          query << ["#{column} LIKE ?"]
+        end
+   
+        words.each_with_index do |w, index|
+          if index == 0
+            result[index] = User.where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+          else
+            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+          end
+        end
+        return result[words.length-1]
+      else
+        User.all
+      end
+  end
+  
+  def age()
+    date_format = "%Y%m%d"
+    (Date.today.strftime(date_format).to_i - self.birthday.strftime(date_format).to_i) / 10000
   end
   
   private
