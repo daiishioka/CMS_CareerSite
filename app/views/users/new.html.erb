@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <%= f.label :image, "アイコン" %>
+        <%= f.label :image, "履歴書写真" %>
         <%= f.file_field :image, class: "form-control" %>
       </div>
     
@@ -15,7 +15,6 @@
         <%= f.label :name, "名前 *" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
-      
       <div class="row">
         <div class="form-group col-md-3">
           <%= f.label :sex, '性別 *', class: 'form-label' %><br>
@@ -48,9 +47,9 @@
           </div>
         </div>
       </div>
-      
       <div class="form-group">
-        <%= f.label :address, "住所" %>
+        <%= f.label :address, "住所" %><br>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '選択して下さい' %>
         <%= f.text_field :address, class: "form-control" %>
       </div>
       
@@ -65,6 +64,16 @@
       </div>
     
       <div class="form-group">
+        <%= f.label :academic_background, "最終学歴" %>
+        <%= f.text_field :academic_background, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :certification, "資格" %>
+        <%= f.text_area :certification, class: "form-control", rows: 3, placeholder: 'オラクルマスターゴールド／日商簿記検定1級／秘書検定1級等、資格を続けてご記入ください'  %>
+      </div>
+      
+      <div class="form-group">
         <span>スキル</span><br>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
           <div class="form-check form-check-inline">
@@ -75,10 +84,15 @@
           </div>
         <% end %>
       </div>
-    
+      
       <div class="form-group">
-        <%= f.label :academic_background, "最終学歴" %>
-        <%= f.text_field :academic_background, class: "form-control" %>
+        <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
+        <%= f.file_field :resume_file, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :career_file, "職務経歴書ファイル(pdf)" %>
+        <%= f.file_field :career_file, class: "form-control" %>
       </div>
       
       <div class="form-group">
@@ -96,16 +110,6 @@
           <%= f.label :password_confirmation, 'パスワード(確認) *' %>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
         </div>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
-        <%= f.file_field :resume_file, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :career_file, "職務経歴書ファイル(pdf)" %>
-        <%= f.file_field :career_file, class: "form-control" %>
       </div>
       
       <div class="field text-left">

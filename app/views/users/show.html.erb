@@ -5,25 +5,75 @@
   <%= link_to "削除", @user, method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: 'btn btn-outline-danger' %>
 </h1>
 
-<% if @user.image.attached? %>
-  <%= image_tag @user.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
-<% else %>
-  <%= image_tag "/person.png", class: 'rounded-circle' %>
-<% end %>
-
-<p>名前: <%= @user.name %></p>
-<p>性別: <%= @user.sex %></p>
-<p>生年月日: <%= @user.birthday.strftime('%Y年%m月%d日') if @user.birthday.present? %></p>
-<p>年齢: <%= @user.age %></p>
-<p>現住所: <%= @user.address %></p>
-<p>電話番号: <%= @user.telephone %></p>
-<p>メールアドレス: <%= @user.email %></p>
-<p>スキル：
-  <% @user.tag.each do |tag| %>
-    <span class="badge badge-info"><%= tag.name %></span>
-  <% end %>
-</p>
-<p>最終学歴: <%= @user.academic_background %></p>
-<p>自己PR: <%= @user.selfpr %></p>
-<p>履歴書ファイル: <%= link_to "履歴書プレビュー", rails_blob_path(@user.resume_file, disposition: "resume_file") if @user.resume_file.attached? %></p>
-<p>職務経歴書ファイル: <%= link_to "職務経歴書プレビュー", rails_blob_path(@user.career_file, disposition: "career_file") if @user.career_file.attached? %></p>
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title"><%= @user.name %> | <%= @user.age %>歳 | <%= @user.prefecture.name if @user.prefecture_id? %></h2>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th style="width:20%">履歴書写真</th>
+        <td>
+          <% if @user.image.attached? %>
+            <%= image_tag @user.image.variant(resize: "100x100!"), class: "img-thumbnail" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th style="width:20%">氏名</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">性別</th>
+        <td><%= @user.sex %></td>
+      </tr>
+      <tr>
+        <th scope="row">生年月日</th>
+        <td><%= @user.birthday.strftime('%Y年%m月%d日') if @user.birthday.present? %> (<%= @user.age %>歳)</td>
+      </tr>
+      <tr>
+        <th scope="row">現住所</th>
+        <td><%= @user.prefecture.name if @user.prefecture_id? %> <%= @user.address %></td>
+      </tr>
+      <tr>
+        <th scope="row">電話番号</th>
+        <td><%= @user.telephone %></td>
+      </tr>
+      <tr>
+        <th scope="row">メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th scope="row">最終学歴</th>
+        <td><%= @user.academic_background %></td>
+      </tr>
+      <tr>
+        <th scope="row">資格</th>
+        <td><%= @user.certification %></td>
+      </tr>
+      <tr>
+        <th scope="row">スキル</th>
+        <td>  
+          <% @user.tag.each do |tag| %>
+            <span class="badge badge-info"><%= tag.name %></span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">履歴書ファイル</th>
+        <td><%= link_to "履歴書プレビュー", rails_blob_path(@user.resume_file, disposition: "resume_file") if @user.resume_file.attached? %></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">職務経歴書ファイル</th>
+        <td><%= link_to "職務経歴書プレビュー", rails_blob_path(@user.career_file, disposition: "career_file") if @user.career_file.attached? %></td>
+      </tr>
+  
+      <tr>
+        <th scope="row">自己PR</th>
+        <td><%= @user.selfpr %></td>
+      </tr>
+      
+    </tbody>
+  </table>
+  </div>
+</div>
