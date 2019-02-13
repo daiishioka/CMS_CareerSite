@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :user_tag_relations, dependent: :destroy
   has_many :tag, through: :user_tag_relations
   
+  has_many :user_prefecture_relations, dependent: :destroy
+  has_many :prefecture, through: :user_prefecture_relations
+  
   has_secure_password
   has_one_attached :image
   has_one_attached :resume_file
@@ -24,7 +27,7 @@ class User < ApplicationRecord
   def self.search(keyword)
       if keyword && keyword != ""
         words = keyword.to_s.split(" ")
-        columns = ["sex", "selfpr", "academic_background"]
+        columns = ["sex", "selfpr", "academic_background", "certification"]
         query = []
         result = []
    
@@ -34,9 +37,9 @@ class User < ApplicationRecord
    
         words.each_with_index do |w, index|
           if index == 0
-            result[index] = User.where([query.join(" OR "), "%#{w}%",  "%#{w}%",  "%#{w}%"])
+            result[index] = User.where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%"])
           else
-            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%",  "%#{w}%"])
+            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%"])
           end
         end
         return result[words.length-1]
