@@ -15,37 +15,43 @@
         <%= f.label :name, "名前 *" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
-      
-      <div class="form-group">
-        <%= f.label :sex, '性別 *', class: 'form-label' %><br>
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-outline-secondary" style="width:50%">
-            <%= f.radio_button :sex, "男性" %> 男性
-          </label>
-          <label class="btn btn-outline-secondary" style="width:50%">
-            <%= f.radio_button :sex, "女性" %> 女性
-          </label>
+      <div class="row">
+        <div class="form-group col-md-3">
+          <%= f.label :sex, '性別 *', class: 'form-label' %><br>
+          <div class="sex btn-group" data-toggle="buttons">
+            <label class="btn btn-outline-secondary" style="width:50%">
+              <%= f.radio_button :sex, "男性" %> 男性
+            </label>
+            <label class="btn btn-outline-secondary" style="width:50%">
+              <%= f.radio_button :sex, "女性" %> 女性
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-group col-md-5">
+          <%= f.label :birthday, "生年月日", class: 'form-label' %><br>
+          <div class="form-inline">
+            <%= raw sprintf(
+                        f.date_select(
+                          :birthday,
+                          {
+                            use_month_numbers: true,
+                            start_year: 1930,
+                            end_year: (Time.now.year - 18),
+                            default: Date.new(1989, 1, 1),
+                            date_separator: '%s'
+                          },
+                          { class: 'form-control col-md-3' }
+                        ),
+                        '年 ', '月 ') + '日' %>
+          </div>
+        </div>
+        
+        <div class="form-group col-md-4">
+          <%= f.label :age, "年齢", class: 'form-label' %><br>
+          <%= f.number_field :age, disabled: true, class: "form-control", style: "width:30%" %>
         </div>
       </div>
-      
-      <div class="form-group">
-        <%= f.label :birthday, "生年月日" %><br>
-        <%= raw sprintf(
-                    f.date_select(
-                      :birthday,
-                      use_month_numbers: true,
-                      start_year: 1930,
-                      end_year: (Time.now.year - 18),
-                      default: Date.new(1989, 1, 1),
-                      date_separator: '%s'),
-                    '年 ', '月 ') + '日'  %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :age, "年齢" %>
-        <%= f.number_field :age, disabled: true, class: "form-control" %>
-      </div>
-      
       <div class="form-group">
         <%= f.label :address, "住所" %>
         <%= f.text_field :address, class: "form-control" %>
@@ -61,12 +67,15 @@
         <%= f.email_field :email, class: "form-control" %>
       </div>
     
-      <div class="field">
-        <% %w(html css javascript ruby php c perl java go scala cobol SQL swift).each.with_index do |skill,i| %>
-        <label>
-          <%= f.check_box  :skill, {multiple: true}, skill, nil %>
-          <%= skill %>
-        </label>
+      <div class="form-group">
+        <span>スキル</span><br>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <div class="form-check form-check-inline">
+            <%= tag.label class: 'form-check-label' do %>
+              <%= tag.check_box class: 'form-check-input' %>
+              <%= tag.text %>
+            <% end %>
+          </div>
         <% end %>
       </div>
     
@@ -76,13 +85,20 @@
       </div>
       
       <div class="form-group">
-        <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :selfpr, "自己PR" %>
+        <%= f.text_area :selfpr, :rows => "10", class: "form-control" %>
       </div>
-    
-      <div class="form-group">
-        <%= f.label :password_confirmation, 'パスワード(確認) *' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      
+      <div class="row">
+        <div class="form-group col-md">
+          <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+      
+        <div class="form-group col-md">
+          <%= f.label :password_confirmation, 'パスワード(確認) *' %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
       </div>
       
       <div class="form-group">

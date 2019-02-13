@@ -5,12 +5,29 @@
   </h1>
   
   <ul>
-    <div class="form-group">
-      <%= form_tag(users_path, :method => 'get' ) do %>
-        <%= text_field_tag :search, '', placeholder: "名前" %>
-        <%= submit_tag 'Search', :name => nil, :sex => nil %>
-      <% end %>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group ">
+          <%= form_tag users_path, method: :get, class: 'users__searchForm' do %>
+            <%= select_tag :tag_id,
+                           options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                           {
+                             prompt: 'スキルで絞り込み',
+                             class: 'form-control users__select',
+                             onchange: 'submit(this.form);'
+                           }
+            %>
+          <% end %>
+        </div>        
+      </div>
+      <div class="col-md-10">
+        <%= form_tag(users_path, :method => 'get', class: "form-inline") do %>
+            <%= text_field_tag :search, '', placeholder: "キーワード 例)性別, 自己PR, 学歴", class: 'form-control col-md-11' %>
+            <%= submit_tag '検索', class: 'btn btn-primary col-md-1', :name => nil, :sex => nil %>
+        <% end %>
+      </div>
     </div>
+
     <% @users.each do |user| %>
       <li class="card-deck">
         <div class="card">

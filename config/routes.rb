@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- root to: 'companies#index'
+ root to: 'users#index'
  
  get 'signup', to: 'users#new'
  

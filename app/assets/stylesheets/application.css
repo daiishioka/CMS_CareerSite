@@ -49,3 +49,12 @@ ul{
 header{
   margin-bottom: 30px;
 }
+
+.users__SearchForm {
+  display: inline-block;
+}
+
+.users__select {
+  display: inline-block;
+  width: auto;
+}

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.page(params[:page]).order('created_at DESC').per(5).search(params[:search])
+    @users = params[:tag_id].present? ? Tag.find(params[:tag_id]).users : User.all
+    @users = @users.page(params[:page]).order('created_at DESC').per(5).search(params[:search])
   end
   
   def new
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:image, :name, :sex, :birthday, :address, :telephone, :email, :academic_background, :resume_file, :career_file, :password, :password_confirmation, :age, :accepted, :skill)
+    params.require(:user).permit(:image, :name, :sex, :birthday, :address, :telephone, :email, :academic_background, :resume_file, :career_file, :password, :password_confirmation, :age, :accepted, :selfpr, tag_ids: [])
   end
   
 end

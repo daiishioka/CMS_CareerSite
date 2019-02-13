@@ -13,10 +13,10 @@ class User < ApplicationRecord
   validates :accepted, presence: {message: 'にチェックしてください'}
   
   belongs_to :skill, optional: true
+  has_many :user_tag_relations, dependent: :destroy
+  has_many :tag, through: :user_tag_relations
   
   has_secure_password
-
- 
   has_one_attached :image
   has_one_attached :resume_file
   has_one_attached :career_file
@@ -24,7 +24,7 @@ class User < ApplicationRecord
   def self.search(keyword)
       if keyword && keyword != ""
         words = keyword.to_s.split(" ")
-        columns = ["name", "sex"]
+        columns = ["sex", "selfpr", "academic_background"]
         query = []
         result = []
    
@@ -34,9 +34,9 @@ class User < ApplicationRecord
    
         words.each_with_index do |w, index|
           if index == 0
-            result[index] = User.where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+            result[index] = User.where([query.join(" OR "), "%#{w}%",  "%#{w}%",  "%#{w}%"])
           else
-            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%",  "%#{w}%"])
           end
         end
         return result[words.length-1]
