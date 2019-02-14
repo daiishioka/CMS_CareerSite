@@ -12,12 +12,10 @@ class User < ApplicationRecord
   validate :correct_career_file_mime_type
   validates :accepted, presence: {message: 'にチェックしてください'}
   
-  belongs_to :skill, optional: true
   has_many :user_tag_relations, dependent: :destroy
   has_many :tag, through: :user_tag_relations
   
-  has_many :user_prefecture_relations, dependent: :destroy
-  has_many :prefectures, through: :user_prefecture_relations
+  belongs_to :prefecture, optional: true
   
   has_secure_password
   has_one_attached :image

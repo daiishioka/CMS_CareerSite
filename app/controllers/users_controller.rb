@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = params[:tag_id].present? ? Tag.find(params[:tag_id]).users : User.all
+    @users = params[:prefecture_id].present? ? Prefecture.find(params[:prefecture_id]).users : User.all
     @users = @users.page(params[:page]).order('created_at DESC').per(5).search(params[:search])
   end
   
