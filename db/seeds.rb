@@ -6,28 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Tag.create([
-  { name: "HTML" },
-  { name: "CSS" },
-  { name: "Java" },
-  { name: "JavaScript" },
-  { name: "Ruby" },
-  { name: "PHP" },
-  { name: "Python" },
-  { name: "Swift" },
-  { name: "C" },
-  { name: "C#" },
-  { name: "C+" },
-  { name: "C++" },
-  { name: "Go" },
-  { name: "Git" },
-  { name: "GitHub" },
-  { name: "Ruby on Rails" },
-  { name: "CakePHP" },
-  { name: "Laravel" },
-  { name: "Django" },
-  { name: "機械学習" },
-  { name: "セキュリティ" },
-  { name: "アルゴリズム" },
-  { name: "インフラ" },
-])
+
+
+
+
+(2..10).each do |i|
+  User.create(name: "吉田#{i}", sex: '男性', birthday: "1992年1月1日", email: "bss#{i}@gmail.com" , password: 'bbbbbb'+ i.to_s, password_confirmation: 'bbbbbb'+ i.to_s, accepted: true)
+end

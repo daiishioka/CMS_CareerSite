@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :tag, through: :user_tag_relations
   
   has_many :user_prefecture_relations, dependent: :destroy
-  has_many :prefecture, through: :user_prefecture_relations
+  has_many :prefectures, through: :user_prefecture_relations
   
   has_secure_password
   has_one_attached :image

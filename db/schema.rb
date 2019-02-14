@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_053939) do
+ActiveRecord::Schema.define(version: 2019_02_13_082138) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 2019_02_12_053939) do
     t.index ["company_id"], name: "index_members_on_company_id"
   end
 
+  create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recruits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "recruitment_background"
@@ -90,6 +96,15 @@ ActiveRecord::Schema.define(version: 2019_02_12_053939) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_prefecture_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "prefecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prefecture_id"], name: "index_user_prefecture_relations_on_prefecture_id"
+    t.index ["user_id"], name: "index_user_prefecture_relations_on_user_id"
   end
 
   create_table "user_tag_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -120,13 +135,19 @@ ActiveRecord::Schema.define(version: 2019_02_12_053939) do
     t.boolean "accepted", default: false, null: false
     t.bigint "skill_id"
     t.text "selfpr"
+    t.bigint "prefecture_id"
+    t.text "certification"
+    t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["skill_id"], name: "index_users_on_skill_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "members", "companies"
   add_foreign_key "recruits", "companies"
+  add_foreign_key "user_prefecture_relations", "prefectures"
+  add_foreign_key "user_prefecture_relations", "users"
   add_foreign_key "user_tag_relations", "tags"
   add_foreign_key "user_tag_relations", "users"
+  add_foreign_key "users", "prefectures"
   add_foreign_key "users", "skills"
 end
