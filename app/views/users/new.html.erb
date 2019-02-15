@@ -158,7 +158,7 @@
           <th scope="row">自己PR</th>
           <td>
             <div class="form-group">
-              <%= f.text_area :selfpr, :rows => "10", class: "form-control" %>
+              <%= f.text_area :selfpr, class: "form-control", rows: "10", placeholder: "今までの経験を活かして「こんな仕事ができる」「役に立てる」というイメージしやすさをうまく表現できると非常に効果的です。" %>
             </div>
           </td>
         </tr>
@@ -166,10 +166,12 @@
     </table>
   </div>
 </div>
-  <div class="field text-left">
-    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
-    <%= f.label '内容の変更に同意する' %>
+  <div class="form-last text-center">
+    <div class="field">
+      <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+      <%= f.label '利用規約、及び、個人情報の取扱に同意する' %>
+    </div>
+    <%= f.submit '投稿', class: "btn btn-outline-primary w-25" %>
   </div>
-  <%= f.submit '投稿', class: "btn btn-outline-primary" %>
 <% end %>
 
