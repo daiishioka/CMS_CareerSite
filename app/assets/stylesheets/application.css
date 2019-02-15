@@ -59,7 +59,11 @@ header{
   display: inline-block;
 }
 
-.users__select {
-  display: inline-block;
-  width: auto;
+#pulldown.col-md-2{
+  padding-left: 0;
+  padding-right: 0;
+}
+#searchform.col-md-8{
+  padding-left: 0;
+  padding-right: 0;
 }
