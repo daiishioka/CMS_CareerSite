@@ -54,10 +54,10 @@
           <% end %>
         </div>
       </div>   
-      <div class="col-md-10">
+      <div class="col-md-8">
         <%= form_tag(users_path, :method => 'get', class: "form-inline") do %>
-            <%= text_field_tag :search, '', placeholder: "キーワード 例)性別, 自己PR, 学歴, 資格 (スペースは半角で)", class: 'form-control col-md-11' %>
-            <%= submit_tag '検索', class: 'btn btn-primary col-xs', name: nil, sex: nil, academic_background: nil %>
+            <%= text_field_tag :search, '', placeholder: "キーワード 例)性別 自己PR 学歴 資格 (複数入力時スペース半角)", class: 'form-control col-md-11' %>
+            <%= submit_tag '検索', class: 'btn btn-primary col-md-1', name: nil, sex: nil, academic_background: nil %>
         <% end %>
       </div>
     </div>

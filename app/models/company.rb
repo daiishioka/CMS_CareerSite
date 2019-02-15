@@ -3,7 +3,6 @@ class Company < ApplicationRecord
   validate :correct_image_mime_type
   
   has_one_attached :image
-  
   has_many :recruits, dependent: :destroy
   has_many :members, dependent: :destroy
   

@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :tag, through: :user_tag_relations
   
   belongs_to :prefecture, optional: true
-  
+      
   has_secure_password
   has_one_attached :image
   has_one_attached :resume_file

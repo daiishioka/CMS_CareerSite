@@ -59,13 +59,7 @@
         <%= f.label :address, "住所" %>
         <div class="row">
           <div class="col-md-2">
-            <%= select_tag :prefecture_id,
-                         options_from_collection_for_select(Prefecture.all, :id, :name, params[:prefecture_id]),
-                         {
-                           prompt: '都道府県で絞り込み',
-                           class: 'form-control form-inilne'
-                         }
-            %>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '選択して下さい'}, { class: "form-control" } %>
           </div>
           <div class="col-md-10">
             <%= f.text_field :address, class: "form-control form-inline", placeholder: "市区町村,番地等をいれて下さい" %>
