@@ -1,134 +1,175 @@
 <%= link_to "戻る", users_path, class: "btn btn-outline-secondary btn-circle" %>
 <h1>新規転職希望者登録</h1>
-<p>* 入力必須項目</p>
+
 
 <%= form_for(@user) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :image, "履歴書写真" %>
-        <%= f.file_field :image, class: "form-control" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :name, "名前 *" %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :sex, '性別 *', class: 'form-label' %><br>
-        <div class="sex btn-group" data-toggle="buttons">
-          <label class="btn btn-outline-secondary" style="width:50%">
-            <%= f.radio_button :sex, "男性" %> 男性
-          </label>
-          <label class="btn btn-outline-secondary" style="width:50%">
-            <%= f.radio_button :sex, "女性" %> 女性
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :birthday, "生年月日", class: 'form-label' %><br>
-        <div class="form-inline">
-          <%= raw sprintf(
-                      f.date_select(
-                        :birthday,
-                        {
-                          use_month_numbers: true,
-                          start_year: 1930,
-                          end_year: (Time.now.year - 18),
-                          default: Date.new(1989, 1, 1),
-                          date_separator: '%s'
-                        },
-                        { class: 'form-control' }
-                      ),
-                      '年 ', '月 ') + '日' %>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :address, "住所" %>
-        <div class="row">
-          <div class="col-md-2">
-            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '選択して下さい'}, { class: "form-control" } %>
-          </div>
-          <div class="col-md-10">
-            <%= f.text_field :address, class: "form-control form-inline", placeholder: "市区町村,番地等をいれて下さい" %>
-          </div>
-        </div>
-
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :telephone, "電話番号" %>
-        <%= f.text_field :telephone, class: "form-control" %> 
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :email, "メールアドレス *" %>
-        <%= f.email_field :email, class: "form-control" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :academic_background, "最終学歴" %>
-        <%= f.text_field :academic_background, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :certification, "資格" %>
-        <%= f.text_area :certification, class: "form-control", rows: 3, placeholder: 'オラクルマスターゴールド／日商簿記検定1級／秘書検定1級等、資格を続けてご記入ください'  %>
-      </div>
-      
-      <div class="form-group">
-        <span>スキル</span><br>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-          <div class="form-check form-check-inline">
-            <%= tag.label class: 'form-check-label' do %>
-              <%= tag.check_box class: 'form-check-input' %>
-              <%= tag.text %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <%= f.label :resume_file, "履歴書ファイル(pdf)" %>
-            <%= f.file_field :resume_file, class: "form-control" %>
-          </div>          
-        </div>
-        <div class="col">
-          <div class="form-group">
-            <%= f.label :career_file, "職務経歴書ファイル(pdf)" %>
-            <%= f.file_field :career_file, class: "form-control" %>
-          </div>          
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :selfpr, "自己PR" %>
-        <%= f.text_area :selfpr, :rows => "10", class: "form-control" %>
-      </div>
-      
-      <div class="row">
-        <div class="form-group col-md">
-          <%= f.label :password, 'パスワード * (6文字以上12文字以下)' %>
-          <%= f.password_field :password, class: 'form-control' %>
-        </div>
-      
-        <div class="form-group col-md">
-          <%= f.label :password_confirmation, 'パスワード(確認) *' %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
-        </div>
-      </div>      
-      <div class="field text-left">
-        <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
-        <%= f.label '利用規約、及び、個人情報の取扱に同意する' %>
-      </div>
-    </div>
+  <div class="card">
+  <div class="card-body">
+    <h3 class="card-title">プロフィール(基本情報)</h3><p>* 入力必須項目</p>
+      <table class="table">
+      <tbody>
+        <tr>
+          <th style="width:20%">履歴書写真</th>
+          <td>
+            <div class="form-group">
+              <%= f.file_field :image, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th style="width:20%">氏名 *</th>
+          <td>
+            <div class="form-group">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">性別 *</th>
+          <td>
+            <div class="form-group">
+              <div class="sex btn-group" data-toggle="buttons">
+                <label class="btn btn-outline-secondary" style="width:50%">
+                  <%= f.radio_button :sex, "男性" %> 男性
+                </label>
+                <label class="btn btn-outline-secondary" style="width:50%">
+                  <%= f.radio_button :sex, "女性" %> 女性
+                </label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">生年月日</th>
+          <td>
+            <div class="form-inline">
+              <%= raw sprintf(
+                          f.date_select(
+                            :birthday,
+                            {
+                              use_month_numbers: true,
+                              start_year: 1930,
+                              end_year: (Time.now.year - 18),
+                              default: Date.new(1989, 1, 1),
+                              date_separator: '%s'
+                            },
+                            { class: 'form-control col-md-3' }
+                          ),
+                          '年 ', '月 ') + '日' %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">現住所</th>
+          <td>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-2">
+                  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '選択して下さい'}, { class: "form-control" } %>
+                </div>
+                <div class="col-md-10">
+                  <%= f.text_field :address, class: "form-control form-inline", placeholder: "市区町村,番地等をいれて下さい" %>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">電話番号</th>
+          <td>
+            <div class="form-group">
+              <%= f.text_field :telephone, class: "form-control" %> 
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">メールアドレス *</th>
+          <td>
+            <div class="form-group">
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">最終学歴</th>
+          <td>
+            <div class="form-group">
+              <%= f.text_field :academic_background, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">資格</th>
+          <td>
+            <div class="form-group">
+              <%= f.text_area :certification, class: "form-control", rows: 3, placeholder: 'オラクルマスターゴールド／日商簿記検定1級／秘書検定1級等、資格を続けてご記入ください'  %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">スキル</th>
+          <td>  
+            <div class="form-group">
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                <div class="form-check form-check-inline">
+                  <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">履歴書ファイル</th>
+          <td>
+            <div class="form-group">
+              <%= f.file_field :resume_file, class: "form-control" %>
+            </div>  
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">職務経歴書ファイル</th>
+          <td>
+            <div class="form-group">
+              <%= f.file_field :career_file, class: "form-control" %>
+            </div>   
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">パスワード * <br>(6文字以上12文字以下)</th>
+          <td>
+            <div class="form-group">
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">パスワード確認</th>
+          <td>
+            <div class="form-group">
+              <%= f.password_field :password_confirmation, class: 'form-control' %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">自己PR</th>
+          <td>
+            <div class="form-group">
+              <%= f.text_area :selfpr, :rows => "10", class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <%= f.submit '登録', class: "btn btn-outline-primary" %>
+</div>
+  <div class="field text-left">
+    <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+    <%= f.label '内容の変更に同意する' %>
+  </div>
+  <%= f.submit '投稿', class: "btn btn-outline-primary" %>
 <% end %>
 
