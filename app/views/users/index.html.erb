@@ -8,20 +8,6 @@
     <div class="container">
     <div class="row">
       <div class="col-md-2" id="pulldown">
-        <div class="form-group">
-          <%= form_tag users_path, method: :get, class: 'users__searchForm' do %>
-            <%= select_tag :tag_id,
-                           options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-                           {
-                             prompt: 'スキルで絞り込み',
-                             class: 'form-control users__select',
-                             onchange: 'submit(this.form);'
-                           }
-            %>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-md-2" id="pulldown">
         <div class="form-group ">
           <%= form_tag users_path, method: :get, class: 'users__searchForm' do %>
             <%= select_tag :prefecture_id,
