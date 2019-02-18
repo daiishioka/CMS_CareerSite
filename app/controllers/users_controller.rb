@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   def index
-    @users = params[:prefecture_id].present? ? Prefecture.find(params[:prefecture_id]).users : User.all
-    @users = @users.page(params[:page]).order('created_at DESC').per(5).search(params[:search])
+    @users = User.all
+      if params[:prefecture_id].present? && params[:search]
+        @users = @users.where(prefecture_id: params[:prefecture_id]).search(params[:search])
+      elsif params[:prefecture_id].present? || params[:search]
+        @users = @users.where(prefecture_id: params[:prefecture_id]).or(@users.search(params[:search]))
+      end
+    @users = @users.page(params[:page]).order('created_at DESC').per(5)
   end
   
   def new
