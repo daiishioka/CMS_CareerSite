@@ -59,13 +59,9 @@ header{
   display: inline-block;
 }
 
-#pulldown.col-md-2{
-  padding-left: 0;
-  padding-right: 0;
-}
-#searchform.col-md-8{
-  padding-left: 0;
-  padding-right: 0;
+
+#searchform{
+  overflow:visible;
 }
 .form-group{
   margin-bottom: 0;
