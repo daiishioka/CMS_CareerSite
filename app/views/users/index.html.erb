@@ -42,7 +42,34 @@
                   <%= user.name %>
                 </div>
                 <div class="col-sm">
-                  <%= user.email %>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th><i class="fas fa-venus-mars"></i></th>
+                        <td><%= user.sex %></td>
+                      </tr>
+                      <tr>
+                        <th><i class="fas fa-envelope"></i></th>
+                        <td><%= user.email %></td>
+                      </tr>
+                      <% if user.prefecture.name.present? %>
+                        <tr>
+                          <th><i class="fas fa-map-marker-alt"></i></th>
+                          <td><%= user.prefecture.name %></td>
+                        </tr>
+                      <% end %>
+                      <% if user.tag.present? %>
+                        <tr>
+                          <th><i class="fas fa-wrench"></i></th>
+                          <td>
+                            <% user.tag.each do |tag| %>
+                              <span class="badge badge-info"><%= tag.name %></span>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
                 <div class="col-xs">
                   <%= link_to "詳細", user_path(user), class: "btn btn-outline-info" %>
