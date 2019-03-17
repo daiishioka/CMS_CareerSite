@@ -78,3 +78,7 @@ header{
   margin-top: 15px;
   margin-bottom: 30px;
 }
+table{
+  border-collapse: separate;
+  padding-top: 10px;
+}

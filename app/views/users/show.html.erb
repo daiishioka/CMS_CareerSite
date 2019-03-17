@@ -23,7 +23,7 @@
           <td><%= @user.name %></td>
         </tr>
         <tr>
-          <th scope="row">性別</th>
+          <th scope="row"><i class="fas fa-venus-mars"></i> 性別</th>
           <td><%= @user.sex %></td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
           <td><%= @user.birthday.strftime('%Y年%m月%d日') if @user.birthday.present? %> (<%= @user.age %>歳)</td>
         </tr>
         <tr>
-          <th scope="row">現住所</th>
+          <th scope="row"><i class="fas fa-map-marker-alt"></i> 現住所</th>
           <td><%= @user.prefecture.name if @user.prefecture_id.present? %> <%= @user.address %></td>
         </tr>
         <tr>
@@ -39,19 +39,19 @@
           <td><%= @user.telephone %></td>
         </tr>
         <tr>
-          <th scope="row">メールアドレス</th>
+          <th scope="row"><i class="fas fa-envelope"></i> メールアドレス</th>
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <th scope="row">最終学歴</th>
+          <th scope="row"><i class="fas fa-user-graduate"></i> 最終学歴</th>
           <td><%= @user.academic_background %></td>
         </tr>
         <tr>
-          <th scope="row">資格</th>
+          <th scope="row"><i class="fas fa-award"></i> 資格</th>
           <td><%= @user.certification %></td>
         </tr>
         <tr>
-          <th scope="row">スキル</th>
+          <th scope="row"><i class="fas fa-wrench"></i> スキル</th>
           <td>  
             <% @user.tag.each do |tag| %>
               <span class="badge badge-info"><%= tag.name %></span>

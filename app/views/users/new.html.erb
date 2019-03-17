@@ -26,7 +26,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">性別 *</th>
+          <th scope="row"><i class="fas fa-venus-mars"></i> 性別 *</th>
           <td>
             <div class="form-group">
               <div class="sex btn-group" data-toggle="buttons">
@@ -61,7 +61,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">現住所</th>
+          <th scope="row"><i class="fas fa-map-marker-alt"></i> 現住所</th>
           <td>
             <div class="form-group">
               <div class="row">
@@ -84,7 +84,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">メールアドレス *</th>
+          <th scope="row"><i class="fas fa-envelope"></i> メールアドレス *</th>
           <td>
             <div class="form-group">
               <%= f.email_field :email, class: "form-control" %>
@@ -92,7 +92,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">最終学歴</th>
+          <th scope="row"><i class="fas fa-user-graduate"></i> 最終学歴</th>
           <td>
             <div class="form-group">
               <%= f.text_field :academic_background, class: "form-control" %>
@@ -100,7 +100,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">資格</th>
+          <th scope="row"><i class="fas fa-award"></i> 資格</th>
           <td>
             <div class="form-group">
               <%= f.text_area :certification, class: "form-control", rows: 3, placeholder: 'オラクルマスターゴールド／日商簿記検定1級／秘書検定1級等、資格を続けてご記入ください'  %>
@@ -108,7 +108,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">スキル</th>
+          <th scope="row"><i class="fas fa-wrench"></i> スキル</th>
           <td>  
             <div class="form-group">
               <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>

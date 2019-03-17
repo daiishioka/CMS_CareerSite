@@ -19,10 +19,30 @@
               %>
           </div>
         </div>
-        <div class="col-md-10 form-inline" id="searchform">
-              <%= text_field_tag :search, '', placeholder: "キーワード 例)性別 自己PR 学歴 資格 (複数入力時スペース半角)", class: 'form-control col-md-10' %>
-              <%= submit_tag '検索', class: 'btn btn-primary col-md-1', name: nil, sex: nil, academic_background: nil %>
+        <div class="col-md-1" id="pulldown">
+          <div class="form-group">
+            <%= form_tag users_path, method: :get, class: 'users__searchForm' do %>
+              <%= select_tag :sex, options_for_select([["男性","男性"],["女性","女性"]], params[:sex]), prompt: '性別', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-2" id="pulldown">
+          <div class="form-group">
+            <%= form_tag users_path, method: :get, class: 'users__searchForm' do %>
+              <%= select_tag :tag_id,
+                             options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                             {
+                               prompt: 'スキルで絞り込み',
+                               class: 'form-control users__select'
+                             }
+              %>
+          </div>
+        </div>
+        <div class="col-md-7 form-inline" id="searchform">
+              <%= text_field_tag :search, '', placeholder: "キーワード 例)自己PR 学歴 資格 (複数入力時スペース半角)", class: 'form-control col-md-10' %>
+              <%= submit_tag '検索', class: 'btn btn-primary col-md-1', name: nil, academic_background: nil %>
+            <% end %>
           <% end %>
+        <% end %>
         </div>
       </div>
     </div>
@@ -33,15 +53,17 @@
           <div class="card-body">
             <div class="container">
               <div class="row align-items-center">
-              <% if user.image.attached? %>
-                <%= image_tag user.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
-              <% else %>
-                <%= image_tag "/person.png", class: "img-thumbnail rounded-circle" %>
-              <% end %>
-                <div class="col-sm">
+                <div class="col-sm-1">
+                  <% if user.image.attached? %>
+                    <%= image_tag user.image.variant(resize: "64x64!"), class: "img-thumbnail rounded-circle" %>
+                  <% else %>
+                    <%= image_tag "/person.png", class: "img-thumbnail rounded-circle" %>
+                  <% end %>                
+                </div>
+                <div class="col-sm-2">
                   <%= user.name %>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm-3">
                   <table>
                     <tbody>
                       <tr>
@@ -52,6 +74,18 @@
                         <th><i class="fas fa-envelope"></i></th>
                         <td><%= user.email %></td>
                       </tr>
+                      <% if user.academic_background.present? %>
+                        <tr>
+                          <th><i class="fas fa-user-graduate"></i></th>
+                          <td><%= user.academic_background %></td>
+                        </tr>
+                      <% end %>
+                      <% if user.certification.present? %>
+                        <tr>
+                          <th><i class="fas fa-award"></i></th>
+                          <td><%= user.certification %></td>
+                        </tr>
+                      <% end %>
                       <% if user.prefecture.name.present? %>
                         <tr>
                           <th><i class="fas fa-map-marker-alt"></i></th>
@@ -71,7 +105,13 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="col-xs">
+                <div class="col-sm-4">
+                  <% if user.selfpr.present? %>
+                    <p>自己PR</p>
+                    <p><%= user.selfpr %></p>
+                  <% end %>
+                </div>
+                <div class="col-xs-1">
                   <%= link_to "詳細", user_path(user), class: "btn btn-outline-info" %>
                   <%= link_to "編集", edit_user_path(user), class: "btn btn-outline-info" %>
                 </div>

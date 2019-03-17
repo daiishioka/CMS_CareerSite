@@ -25,7 +25,7 @@ class User < ApplicationRecord
   def self.search(keyword)
       if keyword && keyword != ""
         words = keyword.to_s.split(" ")
-        columns = ["sex", "selfpr", "academic_background", "certification"]
+        columns = ["selfpr", "academic_background", "certification"]
         query = []
         result = []
    
@@ -35,9 +35,9 @@ class User < ApplicationRecord
    
         words.each_with_index do |w, index|
           if index == 0
-            result[index] = User.where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%"])
+            result[index] = User.where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%"])
           else
-            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%"])
+            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%"])
           end
         end
         return result[words.length-1]
