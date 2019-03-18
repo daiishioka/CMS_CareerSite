@@ -1,23 +1,27 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-      if params[:prefecture_id].present? && params[:search]
-        @users = @users.where(prefecture_id: params[:prefecture_id]).search(params[:search])
-      elsif params[:prefecture_id].present? || params[:search]
-        @users = @users.where(prefecture_id: params[:prefecture_id]).or(@users.search(params[:search]))
+      if params[:search]
+        if params[:prefecture_id].present? && params[:search]
+          @users = @users.where(prefecture_id: params[:prefecture_id]).search(params[:search])
+        elsif params[:sex].present? && params[:search]
+          @users = @users.where(sex: params[:sex]).search(params[:search])
+        elsif params[:tag_id].present? && params[:search]
+          @users = Tag.find(params[:tag_id]).users.search(params[:search])
+        end
+      else
+        if params[:prefecture_id].present?
+          @users = @users.where(prefecture_id: params[:prefecture_id])
+        elsif params[:sex].present?
+          @users = @users.where(sex: params[:sex])
+        elsif params[:tag_id].present?
+          @users = Tag.find(params[:tag_id]).users
+        end
       end
-      
-      if params[:sex].present? && params[:search]
-        @users = @users.where(sex: params[:sex]).search(params[:search])
-      elsif params[:sex].present? || params[:search]
-        @users = @users.where(sex: params[:sex]).or(@users.search(params[:search]))
-      end
-      
-      if params[:tag_id].present? && params[:search]
-        @users = Tag.find(params[:tag_id]).users.search(params[:search])
-      elsif params[:tag_id].present? || params[:search]
-        @users = Tag.find(params[:tag_id]).users.or(@users.search(params[:search]))
-      end
+    
+    if params[:search]
+      @users = @users.search(params[:search])
+    end
       
     @users = @users.page(params[:page]).order('created_at DESC').per(5)
   end
