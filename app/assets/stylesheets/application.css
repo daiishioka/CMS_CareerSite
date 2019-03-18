@@ -54,11 +54,17 @@ ul{
 header{
   margin-bottom: 30px;
 }
+#search.container{
+  padding-left: 0;
+  padding-right: 0;
+}
 
 .users__SearchForm {
   display: inline-block;
 }
-
+.navbar{
+  color: #ffffff;
+}
 
 #searchform{
   overflow:visible;
