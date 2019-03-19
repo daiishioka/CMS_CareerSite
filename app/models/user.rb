@@ -23,27 +23,27 @@ class User < ApplicationRecord
   has_one_attached :career_file
 
   def self.search(keyword)
-      if keyword && keyword != ""
-        words = keyword.to_s.split(" ")
-        columns = ["selfpr", "academic_background", "certification"]
-        query = []
-        result = []
-   
-        columns.each do |column|
-          query << ["#{column} LIKE ?"]
-        end
-   
-        words.each_with_index do |w, index|
-          if index == 0
-            result[index] = User.where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%"])
-          else
-            result[index] = result[index-1].where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%"])
-          end
-        end
-        return result[words.length-1]
-      else
-        User.all
+    if keyword && keyword != ""
+      words = keyword.to_s.split(" ")
+      columns = ["selfpr", "academic_background", "certification"]
+      query = []
+      result = []
+ 
+      columns.each do |column|
+        query << ["#{column} LIKE ?"]
       end
+ 
+      words.each_with_index do |w, index|
+        if index == 0
+          result[index] = User.where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%"])
+        else
+          result[index] = result[index-1].where([query.join(" OR "), "%#{w}%", "%#{w}%", "%#{w}%"])
+        end
+      end
+      return result[words.length-1]
+    else
+      User.all
+    end
   end
   
   def age()

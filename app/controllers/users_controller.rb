@@ -9,6 +9,16 @@ class UsersController < ApplicationController
         elsif params[:tag_id].present? && params[:search]
           @users = Tag.find(params[:tag_id]).users.search(params[:search])
         end
+      elsif params[:prefecture_id]
+        if params[:sex].present? && params[:prefecture_id]
+          @users = @users.where(sex: params[:sex]).where(prefecture_id: params[:prefecture_id])
+        elsif params[:tag_id].present? && params[:prefecture_id]
+          @users = Tag.find(params[:tag_id]).users.where(prefecture_id: params[:prefecture_id])
+        end
+      elsif params[:sex]
+        if params[:tag_id].present? && params[:sex]
+          @users = Tag.find(params[:tag_id]).users.where(sex: params[:sex])
+        end
       else
         if params[:prefecture_id].present?
           @users = @users.where(prefecture_id: params[:prefecture_id])
@@ -16,12 +26,10 @@ class UsersController < ApplicationController
           @users = @users.where(sex: params[:sex])
         elsif params[:tag_id].present?
           @users = Tag.find(params[:tag_id]).users
+        elsif params[:search]
+          @users = @users.search(params[:search])
         end
       end
-    
-    if params[:search]
-      @users = @users.search(params[:search])
-    end
       
     @users = @users.page(params[:page]).order('created_at DESC').per(5)
   end
