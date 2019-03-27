@@ -11,7 +11,7 @@
     <table class="table table-striped">
       <tbody>
         <tr>
-          <th style="width:20%">履歴書写真</th>
+          <th style="width:20%"><i class="fas fa-camera"></i> 履歴書写真</th>
           <td>
             <% if @user.image.attached? %>
               <%= image_tag @user.image.variant(resize: "100x100!"), class: "img-thumbnail" %>
@@ -19,7 +19,7 @@
           </td>
         </tr>
         <tr>
-          <th style="width:20%">氏名</th>
+          <th style="width:20%"><i class="fas fa-user-alt"></i> 氏名</th>
           <td><%= @user.name %></td>
         </tr>
         <tr>
@@ -27,7 +27,7 @@
           <td><%= @user.sex %></td>
         </tr>
         <tr>
-          <th scope="row">生年月日</th>
+          <th scope="row"><i class="fas fa-birthday-cake"></i> 生年月日</th>
           <td><%= @user.birthday.strftime('%Y年%m月%d日') if @user.birthday.present? %> (<%= @user.age %>歳)</td>
         </tr>
         <tr>
@@ -35,7 +35,7 @@
           <td><%= @user.prefecture.name if @user.prefecture_id.present? %> <%= @user.address %></td>
         </tr>
         <tr>
-          <th scope="row">電話番号</th>
+          <th scope="row"><i class="fas fa-phone"></i> 電話番号</th>
           <td><%= @user.telephone %></td>
         </tr>
         <tr>
@@ -59,12 +59,12 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">履歴書ファイル</th>
+          <th scope="row"><i class="fas fa-file-pdf"></i> 履歴書ファイル</th>
           <td><%= link_to "履歴書プレビュー", rails_blob_path(@user.resume_file, disposition: "resume_file") if @user.resume_file.attached? %></td>
         </tr>
         
         <tr>
-          <th scope="row">職務経歴書ファイル</th>
+          <th scope="row"><i class="fas fa-file-pdf"></i> 職務経歴書ファイル</th>
           <td><%= link_to "職務経歴書プレビュー", rails_blob_path(@user.career_file, disposition: "career_file") if @user.career_file.attached? %></td>
         </tr>
     
