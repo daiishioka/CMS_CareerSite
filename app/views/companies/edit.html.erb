@@ -27,16 +27,19 @@
         <tr>
           <th scope="row">設立年 *</th>
           <td>
-            <div class="form-group">
+            <div class="form-inline col-md-6" id="birthday">
                 <%= raw sprintf(
                           f.date_select(
                             :established_yearmonth,
-                            use_month_numbers: true,
-                            start_year: 1930,
-                            discard_day: true,
-                            date_separator: '%s'),
-                          '年 ') + '月'
-                 %>
+                            {
+                              use_month_numbers: true,
+                              start_year: 1930,
+                              discard_day: true,
+                              date_separator: '%s'
+                            },
+                            { class: 'form-control col-md-3' }
+                            ),
+                          '年 ') + '月' %>
               </div>
             </div>
           </td>
@@ -99,5 +102,7 @@
     </table>
   </div>
 </div>
-  <%= f.submit '投稿', class: "btn btn-outline-primary" %>
+  <div class="form-last text-center">
+    <%= f.submit '編集', class: "btn btn-outline-primary w-25" %>
+  </div>
 <% end %>
