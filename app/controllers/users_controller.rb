@@ -1,33 +1,33 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-      if params[:search]
-        if params[:prefecture_id].present? && params[:search]
+      if params[:search].present?
+        if params[:prefecture_id].present? && params[:search].present?
           @users = @users.where(prefecture_id: params[:prefecture_id]).search(params[:search])
-        elsif params[:sex].present? && params[:search]
+        elsif params[:sex].present? && params[:search].present?
           @users = @users.where(sex: params[:sex]).search(params[:search])
-        elsif params[:tag_id].present? && params[:search]
+        elsif params[:tag_id].present? && params[:search].present?
           @users = Tag.find(params[:tag_id]).users.search(params[:search])
-        end
-      elsif params[:prefecture_id]
-        if params[:sex].present? && params[:prefecture_id]
-          @users = @users.where(sex: params[:sex]).where(prefecture_id: params[:prefecture_id])
-        elsif params[:tag_id].present? && params[:prefecture_id]
-          @users = Tag.find(params[:tag_id]).users.where(prefecture_id: params[:prefecture_id])
-        end
-      elsif params[:sex]
-        if params[:tag_id].present? && params[:sex]
-          @users = Tag.find(params[:tag_id]).users.where(sex: params[:sex])
-        end
-      else
-        if params[:prefecture_id].present?
-          @users = @users.where(prefecture_id: params[:prefecture_id])
-        elsif params[:sex].present?
-          @users = @users.where(sex: params[:sex])
-        elsif params[:tag_id].present?
-          @users = Tag.find(params[:tag_id]).users
-        elsif params[:search]
+        elsif params[:search].present?
           @users = @users.search(params[:search])
+        end
+      elsif params[:prefecture_id].present?
+        if params[:sex].present? && params[:prefecture_id].present?
+          @users = @users.where(sex: params[:sex]).where(prefecture_id: params[:prefecture_id])
+        elsif params[:tag_id].present? && params[:prefecture_id].present?
+          @users = Tag.find(params[:tag_id]).users.where(prefecture_id: params[:prefecture_id])
+        elsif params[:prefecture_id].present?
+          @users = @users.where(prefecture_id: params[:prefecture_id])
+        end
+      elsif params[:sex].present?
+        if params[:tag_id].present? && params[:sex].present?
+          @users = Tag.find(params[:tag_id]).users.where(sex: params[:sex])
+        elsif params[:sex].present?
+          @users = @users.search(params[:search])
+        end
+      elsif params[:tag_id].present?
+        if params[:tag_id].present?
+          @users = Tag.find(params[:tag_id]).users
         end
       end
       
