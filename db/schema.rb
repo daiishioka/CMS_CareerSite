@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_13_082138) do
+ActiveRecord::Schema.define(version: 2019_04_24_033754) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -78,11 +78,21 @@ ActiveRecord::Schema.define(version: 2019_02_13_082138) do
     t.string "title"
     t.text "recruitment_background"
     t.text "job_description"
-    t.text "requirement"
-    t.text "selection_process"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "company_id"
+    t.string "job_requirement"
+    t.string "hire_type"
+    t.text "quolification_reqirement"
+    t.text "working_place"
+    t.string "working_time"
+    t.string "salary"
+    t.text "welfare"
+    t.text "holiday"
+    t.string "application_method"
+    t.text "interview_process"
+    t.string "interview_place"
+    t.string "pic"
     t.index ["company_id"], name: "index_recruits_on_company_id"
   end
 
